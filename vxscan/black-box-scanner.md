@@ -15,7 +15,6 @@ flowchart LR
     classDef box font-size:32pt,stroke-width:5px,text-align:center;
     class system box;
 
-
     subgraph inputMaterial["Material Inputs"]
         ballots-input ~~~
         thermalPaper-input["thermal paper"] ~~~
@@ -29,9 +28,10 @@ flowchart LR
         powerPlug-input["power plug (from wall or UPS)"] ~~~
         powerCable-input["power cable (for internal storage)"] ~~~
         dirt-input["dirt/dust"] ~~~
-        ballotReceptacle-input["ballot receptacle interface"]
+        ballotReceptacle-input["ballot receptacle interface"] ~~~
         tools
     end
+    style inputMaterial border:0px;
 
     subgraph inputEnergy["Energy Inputs"]
         gravity ~~~
