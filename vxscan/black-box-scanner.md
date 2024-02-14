@@ -7,29 +7,95 @@
 title: VxScan Black Box Diagram Hardware Inputs and Outputs
 ---
 
-graph LR
+flowchart LR
 
     system["VxScan 
-        precinct scanner"]
+        precinct 
+        scanner"]
+    classDef box font-size:32pt,stroke-width:5px,text-align:center;
+    class system box;
 
-    input-material[Material Inputs]
 
-    input-energy[Energy Inputs]
+    subgraph inputMaterial["Material Inputs"]
+        ballots-input ~~~
+        thermalPaper-input["thermal paper"] ~~~
+        usbs-input["USBs"] ~~~
+        smartCards-input["smart cards"] ~~~
+        securitySeals-input["security seals (ties & labels)"] ~~~
+        hands-input["human hands, fingers, clothes"] ~~~
+        cleaningMaterials-input["cleaning materials"] ~~~
+        atmosphere-input ~~~
+        transportMaterials-input["transport materials"] ~~~
+        powerPlug-input["power plug (from wall or UPS)"] ~~~
+        powerCable-input["power cable (for internal storage)"] ~~~
+        dirt-input["dirt/dust"] ~~~
+        ballotReceptacle-input["ballot receptacle interface"]
+        tools
+    end
 
-    input-information[Information Inputs]
+    subgraph inputEnergy["Energy Inputs"]
+        gravity ~~~
+        humanForces["human forces"] ~~~
+        electricalPower["electrical power"] ~~~
+        esd["electrostatic discharge"] ~~~
+        rf["RF signals"] ~~~
+        heat ~~~
+        light ~~~
+        vibrations
+    end
 
-    input-material-->system
-    input-energy-->system
-    input-information-->system
+    subgraph inputInformation["Information Inputs"]
+        electionDefinition["election definitions"] ~~~
+        electionManager["Election manager inputs"] ~~~
+        maintenanceWorker["Maintenance worker and SysAdmin inputs"] ~~~
+        pollworker["pollworker inputs"] ~~~
+        voter["voter inputs"]
+    end
 
-    output-material[Material Outputs]
+    inputMaterial==>system
+    inputEnergy-->system
+    inputInformation-.->system
 
-    output-energy[Energy Outputs]
+    subgraph outputMaterial["Material Outputs"]
+        ballots-output ~~~
+        thermalPaper-output["thermal paper"] ~~~
+        usbs-output["USBs"] ~~~
+        smartCards-output["smart cards"] ~~~
+        securitySeals-output["security seals (ties & labels)"] ~~~
+        hands-output["human hands, fingers, clothes"] ~~~
+        cleaningMaterials-output["cleaning materials"] ~~~
+        atmosphere-output ~~~
+        transportMaterials-output["transport materials"] ~~~
+        powerPlug-output["power plug (from wall or UPS)"] ~~~
+        powerCable-output["power cable (for internal storage)"] ~~~
+        dirt-output["dirt/dust"] ~~~
+        ballotReceptacle-output["ballot receptacle interface"] ~~~
+        tools-output
+    end
 
-    output-information[Information Outputs]
+    subgraph outputEnergy["Energy Outputs"]
+        physicalReactionForces["Physical reaction forces"] ~~~ 
+        vibrations-output["vibrations"] ~~~
+        rf-output["RF emissions"] ~~~
+        emField-output["EM field"] ~~~
+        noise["noise, sound"] ~~~
+        esd-output["electrostatic discharge"] ~~~
+        Heat
+    end
 
-    system-->output-material
-    system-->output-energy
-    system-->output-information
+    subgraph outputInformation["Information Outputs"]
+        votingData["voting data"] ~~~
+        visualFeedback["visual feedback"] ~~~
+        audioFeedback["audio feedback"] ~~~
+        securityStatuses["security statuses"] ~~~
+        machineIds["machine IDs"] ~~~
+        indicatorsHowToUse["Indicators of how to use system and features"]
+    end
+
+    system==>outputMaterial
+    system-->outputEnergy
+    system-.->outputInformation
+
+
 
 ```
