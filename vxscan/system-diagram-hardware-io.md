@@ -10,69 +10,68 @@ flowchart LR
 
 scanner["VxScan: 
     Ballot Scanner"]
-ballotReceptacle[Ballot 
-    receptacle]
+ballotReceptacle["Ballot 
+    receptacle"]
 ups["UPS"]
 floor 
 
-inputsMaterialsCommon[human hands and clothes, 
+inputsMaterialsCommon["human hands and clothes, 
     cleaning materials, atmosphere,
-    transport materials, dirt, dust]
+    transport materials, dirt, dust"]
 inputsMaterialsCommon-->scanner & ballotReceptacle & ups
 
-outputsEnergyCommon[vibrations, RF, EM fields, 
+outputsEnergyCommon["vibrations, RF, EM fields, 
     physical reaction forces, 
-    noise, heat, light]
+    noise, heat, light"]
 scanner & ballotReceptacle & ups==>outputsEnergyCommon
 
-outputsMaterialsCommon[human hands and clothes, 
+outputsMaterialsCommon["human hands and clothes, 
     cleaning materials, atmosphere,
-    transport materials, dirt, dust]
+    transport materials, dirt, dust"]
 scanner & ballotReceptacle & ups-->outputsMaterialsCommon
 
-inputsMaterialScanner[ballots, thermal paper, USBs, smart cards, 
-    security seals, power plug, power cable, tools]
+inputsMaterialScanner["ballots, thermal paper, USBs, smart cards, 
+    security seals, power plug, power cable, tools"]
 inputsMaterialScanner-->scanner
 
-inputsEnergyCommon[gravity, human forces, impact forces,
-    heat, light, vibrations, RF, EM fields, ESD]
+inputsEnergyCommon["gravity, human forces, impact forces,
+    heat, light, vibrations, RF, EM fields, ESD"]
 inputsEnergyCommon==>scanner & ballotReceptacle & ups
 
-outputsMaterialScanner[invalid ballots, thermal paper, 
+outputsMaterialScanner["invalid ballots, thermal paper, 
     USBs, smart cards, security seals, 
-    power cable]
+    power cable"]
 scanner-->outputsMaterialScanner
 
-outputsInformationScanner[digital visual feedback,
+outputsInformationScanner["digital visual feedback,
     digital audio feedback,
-    security statuses, machine IDs]
+    security statuses, machine IDs"]
 scanner-.->outputsInformationScanner
 
 scanner---->|valid ballots|ballotReceptacle
 scanner<==>|"reaction forces, 
     ESD"|ballotReceptacle
 
-inputsMaterialsBallotReceptacle[security seals, keys]
+inputsMaterialsBallotReceptacle["security seals, keys"]
 inputsMaterialsBallotReceptacle-->ballotReceptacle
+
+outputsMaterialsBallotReceptacle["scanned ballots, 
+    security seals, keys"]
 ballotReceptacle-->outputsMaterialsBallotReceptacle
 
-outputsMaterialsBallotReceptacle[scanned ballots, 
-    security seals, keys]
-ballotReceptacle-->outputsMaterialsBallotReceptacle
-
-outputsInformationBallotReceptacle[system information, 
-    security statuses]
+outputsInformationBallotReceptacle["system information, 
+    security statuses"]
 ballotReceptacle-.->outputsInformationBallotReceptacle
 
 ups==>|electrical power, 
     plug|scanner
 
-outputsInformationUps[UPS statuses]
+outputsInformationUps["UPS statuses"]
 ups-.->outputsInformationUps
 
-inputsMaterialsUps[plug from mains]
+inputsMaterialsUps["plug from mains"]
 inputsMaterialsUps==>ups
-inputsEnergyUps[electrical power]
+inputsEnergyUps["electrical power"]
 inputsEnergyUps==>ups
 
 floor<==>|reaction forces, 
@@ -83,20 +82,20 @@ floor<==>|reaction forces,
 classDef io font-size:10pt,stroke-width:0px;
 class inputsEnergyCommon,inputsMaterialScanner,inputsEnergyCommon,outputsMaterialScanner,outputsMaterialsCommon,outputsEnergyCommon,inputsMaterialsBallotReceptacle,outputsInformationScanner,outputsMaterialsBallotReceptacle,outputsInformationBallotReceptacle,inputsEnergyBallotReceptacle,inputsMaterialsCommon,outputsInformationUps,inputsEnergyUps,inputsMaterialsUps io;
 
-subgraph inputsFunctional[Functional Inputs]
+subgraph inputsFunctional["Functional Inputs"]
     inputsMaterialScanner
     inputsMaterialsBallotReceptacle
     inputsEnergyUps
     inputsMaterialsUps
 end
 
-subgraph inputsEnvironmental[Environmental Inputs]
+subgraph inputsEnvironmental["Environmental Inputs"]
     inputsMaterialsCommon
     inputsEnergyCommon
 end
 
 
-subgraph outputsFunctional[Functional Outputs]
+subgraph outputsFunctional["Functional Outputs"]
     outputsMaterialScanner
     outputsInformationScanner
     outputsMaterialsBallotReceptacle
@@ -104,7 +103,7 @@ subgraph outputsFunctional[Functional Outputs]
     outputsInformationUps
 end
 
-subgraph outputsEnvironmental[Environmental Outputs]
+subgraph outputsEnvironmental["Environmental Outputs"]
     outputsMaterialsCommon
     outputsEnergyCommon
 end

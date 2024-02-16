@@ -10,7 +10,7 @@ These diagrams represent how different VotingWorks systems function.  They are m
 * Final designs
 * Helping identify failure modes
 
-These are coded with [Mermaid.js](https://mermaid.js.org/).
+These are coded with [Mermaid.js](https://mermaid.js.org/).  You can use [Mermaid Live Editor](https://mermaid.live/) to view and export the charts if they don't show on GitHub.
 
 ## Diagrams
 
