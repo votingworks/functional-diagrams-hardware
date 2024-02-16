@@ -48,7 +48,7 @@ flowchart LR
         security statuses, machine IDs"]
     scanner-.->outputsInformationScanner
 
-    scanner---->|valid ballots|ballotReceptacle
+    scanner---->|"valid ballots"|ballotReceptacle
     scanner<==>|"reaction forces, 
         ESD"|ballotReceptacle
 
@@ -63,7 +63,7 @@ flowchart LR
         security statuses"]
     ballotReceptacle-.->outputsInformationBallotReceptacle
 
-    ups==>|"electrical power, 
+    ups===>|"electrical power, 
         plug"|scanner
 
     outputsInformationUps["UPS statuses"]

@@ -6,6 +6,7 @@
 ---
 title: VxScan Black Box Diagram Hardware Inputs and Outputs
 ---
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
 
 flowchart LR
 
@@ -16,102 +17,83 @@ flowchart LR
     class system box;
 
     subgraph inputMaterial["Material Inputs"]
-        ballots-input["ballots"] ~~~
-        thermalPaper-input["thermal paper"] ~~~
-        usbs-input["USBs"] ~~~
-        smartCards-input["smart cards"] ~~~
-        securitySeals-input["security seals 
-            (ties & labels)"] ~~~
-        hands-input["human hands, 
-            fingers, clothes"] ~~~
-        cleaningMaterials-input["cleaning materials"] ~~~
-        atmosphere-input["atmosphere"] ~~~
-        transportMaterials-input["transport materials"] ~~~
-        powerPlug-input["power plug 
-            (from wall or UPS)"] ~~~
-        powerCable-input["power cable 
-            (for internal storage)"] ~~~
-        dirt-input["dirt/dust"] ~~~
-        ballotReceptacle-input["ballot receptacle 
-            interface"] ~~~
-        tools
+        inputMaterialsList["ballots
+            thermal paper
+            USBs
+            smart cards
+            security seals 
+            (ties & labels)
+            human hands, 
+            fingers, clothes
+            cleaning materials
+            atmosphere
+            transport materials
+            power plug (from wall or UPS)
+            power cable (for internal storage)
+            dirt/dust
+            ballot receptacle interfaces
+            tools"]
     end
-    style inputMaterial border:0px;
 
     subgraph inputEnergy["Energy Inputs"]
-        gravity ~~~
-        humanForces["human forces"] ~~~
-        electricalPower["electrical power"] ~~~
-        esd["electrostatic 
-            discharge (ESD)"] ~~~
-        rf["Radiofrequency 
-            (RF) signals"] ~~~
-        heat ~~~
-        light ~~~
-        vibrations
+        inputEnergyList["gravity
+            human forces
+            electrical power
+            electrostatic discharge (ESD)
+            electromagnetic (EM) fields
+            radiofrequency (RF) signals
+            heat
+            light
+            vibrations"]
     end
 
     subgraph inputInformation["Information Inputs"]
-        electionDefinition["election 
-            definitions"] ~~~
-        electionManager["election manager 
-            inputs"] ~~~
-        maintenanceWorker["maintenance 
-            worker and 
-            SysAdmin inputs"] ~~~
-        pollworker["pollworker inputs"] ~~~
-        voter["voter inputs"]
+        inputInformationList["election definitions
+            election manager inputs
+            maintenance worker and SysAdmin inputs
+            pollworker inputs
+            voter inputs"]
     end
 
-    inputMaterial==>system
-    inputEnergy-->system
-    inputInformation-.->system
+    inputMaterial ==> system
+    inputEnergy --> system
+    inputInformation -.-> system
 
     subgraph outputMaterial["Material Outputs"]
-        ballots-output["ballots"] ~~~
-        thermalPaper-output["thermal paper"] ~~~
-        usbs-output["USBs"] ~~~
-        smartCards-output["smart cards"] ~~~
-        securitySeals-output["security seals 
-            (ties & labels)"] ~~~
-        hands-output["human hands, 
-            fingers, clothes"] ~~~
-        cleaningMaterials-output["cleaning 
-            materials"] ~~~
-        atmosphere-output["atmosphere"] ~~~
-        transportMaterials-output["transport 
-            materials"] ~~~
-        powerPlug-output["power plug 
-            (from wall or UPS)"] ~~~
-        powerCable-output["power cable 
-            (for internal storage)"] ~~~
-        dirt-output["dirt/dust"] ~~~
-        ballotReceptacle-output["ballot receptacle 
-            interface"] ~~~
-        tools-output
+        outputMaterialList["ballots
+        thermal paper
+        USBs
+        smart cards
+        security seals (ties & labels)
+        human hands, fingers, clothes
+        cleaning materials
+        atmosphere
+        transport materials
+        power plug (from wall or UPS)
+        power cable (for internal storage)
+        dirt/dust
+        ballot receptacle interfaces
+        tools-output"]
     end
 
     subgraph outputEnergy["Energy Outputs"]
-        physicalReactionForces["Physical 
-            reaction forces"] ~~~ 
-        vibrations-output["vibrations"] ~~~
-        rf-output["RF emissions"] ~~~
-        emField-output["EM field"] ~~~
-        noise["noise, sound"] ~~~
-        esd-output["electrostatic 
-            discharge (ESD)"] ~~~
-        Heat
+        outputEnergyList["hysical reaction forces
+            vibrations
+            electrostatic discharge (ESD)
+            electromagnetic (EM) fields
+            radiofrequency (RF) signals
+            noise, sound
+            heat
+            light"]
     end
 
     subgraph outputInformation["Information Outputs"]
-        votingData["voting data"] ~~~
-        visualFeedback["visual feedback"] ~~~
-        audioFeedback["audio feedback"] ~~~
-        securityStatuses["security statuses"] ~~~
-        machineIds["machine IDs"] ~~~
-        indicatorsHowToUse["Indicators of how
-            to use system 
-            and features"]
+        outputInformationList["voting data
+            visual feedback
+            audio feedback
+            security statuses
+            machine IDs
+            indicators of how to use system features"]
     end
 
     system==>outputMaterial
@@ -119,5 +101,8 @@ flowchart LR
     system-.->outputInformation
 
 
+    style inputMaterial stroke-width:0px,fill:#;
+    classDef longList text-align:left;
+    class inputMaterialsList,inputEnergyList,inputInformationList longList;
 
 ```
