@@ -2,8 +2,6 @@
 
 ```mermaid
 
-%%{init: {'themeVariables': { 'edgeLabelBackground': 'transparent'}}}%%
-
 ---
 title: VxScan Functional Diagram of Scanner and Ballot Receptacle System
 ---
