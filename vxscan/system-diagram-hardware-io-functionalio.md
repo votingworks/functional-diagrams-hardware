@@ -32,7 +32,7 @@ flowchart LR
         security statuses, machine IDs"]
     scanner -.-> outputsInformationScanner
 
-    scanner ===> |"valid ballots"|ballotReceptacle
+    scanner ===> |"valid scanned ballots"|ballotReceptacle
 
     inputsMaterialsBallotReceptacle["security seals, keys"]
     inputsMaterialsBallotReceptacle ==> ballotReceptacle
@@ -45,15 +45,13 @@ flowchart LR
         security statuses"]
     ballotReceptacle -.-> outputsInformationBallotReceptacle
 
-    ups --> |"electrical power, 
-        plug"|scanner
+    ups --> |"electrical power, plug"|scanner
 
     outputsInformationUps["UPS statuses"]
     ups -.-> outputsInformationUps
 
-    inputsMaterialsUps["plug from mains"]
-    inputsMaterialsUps ==> ups
-    inputsEnergyUps["electrical power"]
+    inputsEnergyUps["electrical power,
+        plug from mains"]
     inputsEnergyUps --> ups
 
     classDef io font-size:10pt,stroke-width:0px,fill-opacity:0;

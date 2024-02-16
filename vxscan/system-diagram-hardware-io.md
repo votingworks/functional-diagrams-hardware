@@ -17,7 +17,7 @@ flowchart LR
     inputsMaterialsCommon("human hands and clothes, 
         cleaning materials, atmosphere,
         transport materials, dirt, dust")
-    inputsMaterialsCommon ===> scanner & ballotReceptacle & ups
+    inputsMaterialsCommon ==> scanner & ballotReceptacle & ups
 
     outputsEnergyCommon("vibrations, RF, EM fields, 
         physical reaction forces, 
@@ -31,7 +31,7 @@ flowchart LR
 
     inputsMaterialScanner("ballots, thermal paper, USBs, smart cards, 
         security seals, power plug, power cable, tools")
-    inputsMaterialScanner ====> scanner
+    inputsMaterialScanner ===> scanner
 
     inputsEnergyCommon("gravity, human forces, impact forces,
         heat, light, vibrations, RF, EM fields, ESD")
@@ -47,9 +47,8 @@ flowchart LR
         security statuses, machine IDs")
     scanner -.-> outputsInformationScanner
 
-    scanner ==> |"valid ballots"|ballotReceptacle
-    scanner <--> |"reaction forces, 
-        ESD"|ballotReceptacle
+    scanner ===> |"valid scanned ballots"|ballotReceptacle
+    scanner <--> |"reaction forces, ESD"|ballotReceptacle
 
     inputsMaterialsBallotReceptacle("security seals, keys")
     inputsMaterialsBallotReceptacle ==> ballotReceptacle
@@ -62,8 +61,8 @@ flowchart LR
         security statuses")
     ballotReceptacle -.-> outputsInformationBallotReceptacle
 
-    ups --> |"electrical power, 
-        plug"|scanner
+    ups ==> |"plug"|scanner
+    ups --> |"electrical power"|scanner
 
     outputsInformationUps("UPS statuses")
     ups -.-> outputsInformationUps
