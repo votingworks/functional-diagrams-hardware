@@ -79,7 +79,7 @@ flowchart LR
     floor <--> |"reaction forces, 
         ESD"|ballotReceptacle
 
-    classDef io font-size:10pt,stroke-width:0px;
+    classDef io font-size:10pt,stroke-width:0px,fill-opacity:0;
     class inputsEnergyCommon,inputsMaterialScanner,inputsEnergyCommon,outputsMaterialScanner,outputsMaterialsCommon,outputsEnergyCommon,inputsMaterialsBallotReceptacle,outputsInformationScanner,outputsMaterialsBallotReceptacle,outputsInformationBallotReceptacle,inputsEnergyBallotReceptacle,inputsMaterialsCommon,outputsInformationUps,inputsEnergyUps,inputsMaterialsUps io;
 
 

@@ -2,6 +2,8 @@
 
 ```mermaid
 
+%%{init: {'themeVariables': { 'edgeLabelBackground': 'transparent'}}}%%
+
 ---
 title: VxScan Functional Diagram of Scanner and Ballot Receptacle System
 ---
@@ -14,12 +16,16 @@ flowchart LR
         receptacle"]
     ups["UPS"]
 
-    inputsMaterialScanner["ballots, thermal paper, USBs, smart cards, 
-        security seals, power plug, power cable, tools"]
+    inputsMaterialScanner["ballots, thermal paper, 
+        USBs, smart cards, 
+        security seals, power plug, 
+        power cable, tools"]
     inputsMaterialScanner ==> scanner
 
-    outputsMaterialScanner["invalid ballots, thermal paper, 
-        USBs, smart cards, security seals, 
+    outputsMaterialScanner["invalid ballots, 
+        thermal paper, 
+        USBs, smart cards, 
+        security seals, 
         power cable"]
     scanner ==> outputsMaterialScanner
 
@@ -52,7 +58,7 @@ flowchart LR
     inputsEnergyUps["electrical power"]
     inputsEnergyUps --> ups
 
-    classDef io font-size:10pt,stroke-width:0px;
+    classDef io font-size:10pt,stroke-width:0px,fill-opacity:0;
     class inputsEnergyCommon,inputsMaterialScanner,inputsEnergyCommon,outputsMaterialScanner,outputsMaterialsCommon,outputsEnergyCommon,inputsMaterialsBallotReceptacle,outputsInformationScanner,outputsMaterialsBallotReceptacle,outputsInformationBallotReceptacle,inputsEnergyBallotReceptacle,inputsMaterialsCommon,outputsInformationUps,inputsEnergyUps,inputsMaterialsUps io;
 
 ```
