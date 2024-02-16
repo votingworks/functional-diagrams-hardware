@@ -18,7 +18,8 @@ These are coded with [Mermaid.js](https://mermaid.js.org/).
 
 *Functional models*
 * [Black box diagram (scanner hardware only): inputs and outputs](./vxscan/black-box-scanner.md)
-* Functional model: Scanner, ballot receptacle, and UPS
+* [Functional Diagram of Scanner and Ballot Receptacle System](./vxscan/system-diagram-hardware.md)
+* [Functional Diagram of Scanner and Ballot Receptacle System, Focusing on Inputs and Outputs](./vxscan/system-diagram-hardware-io.md)
 * Functional model: System-level (physical hardware only)
 
 *User Actions*
