@@ -32,7 +32,7 @@ flowchart LR
         security statuses, machine IDs"]
     scanner -.-> outputsInformationScanner
 
-    scanner ====> |"valid ballots"|ballotReceptacle
+    scanner ===> |"valid ballots"|ballotReceptacle
 
     inputsMaterialsBallotReceptacle["security seals, keys"]
     inputsMaterialsBallotReceptacle ==> ballotReceptacle
