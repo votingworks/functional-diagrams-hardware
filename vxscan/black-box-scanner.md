@@ -36,8 +36,9 @@ flowchart LR
     end
 
     subgraph inputEnergy["Energy Inputs"]
-        inputEnergyList["gravity
+        inputEnergyList["gravity and weight
             human forces
+            impact forces
             electrical power
             electrostatic discharge (ESD)
             electromagnetic (EM) fields
@@ -77,7 +78,7 @@ flowchart LR
     end
 
     subgraph outputEnergy["Energy Outputs"]
-        outputEnergyList["hysical reaction forces
+        outputEnergyList["physical reaction forces
             vibrations
             electrostatic discharge (ESD)
             electromagnetic (EM) fields

@@ -18,65 +18,65 @@ flowchart LR
     inputsMaterialsCommon["human hands and clothes, 
         cleaning materials, atmosphere,
         transport materials, dirt, dust"]
-    inputsMaterialsCommon-->scanner & ballotReceptacle & ups
+    inputsMaterialsCommon ==> scanner & ballotReceptacle & ups
 
     outputsEnergyCommon["vibrations, RF, EM fields, 
         physical reaction forces, 
         noise, heat, light"]
-    scanner & ballotReceptacle & ups==>outputsEnergyCommon
+    scanner & ballotReceptacle & ups --> outputsEnergyCommon
 
     outputsMaterialsCommon["human hands and clothes, 
         cleaning materials, atmosphere,
         transport materials, dirt, dust"]
-    scanner & ballotReceptacle & ups-->outputsMaterialsCommon
+    scanner & ballotReceptacle & ups ==> outputsMaterialsCommon
 
     inputsMaterialScanner["ballots, thermal paper, USBs, smart cards, 
         security seals, power plug, power cable, tools"]
-    inputsMaterialScanner-->scanner
+    inputsMaterialScanner ==> scanner
 
     inputsEnergyCommon["gravity, human forces, impact forces,
         heat, light, vibrations, RF, EM fields, ESD"]
-    inputsEnergyCommon==>scanner & ballotReceptacle & ups
+    inputsEnergyCommon --> scanner & ballotReceptacle & ups
 
     outputsMaterialScanner["invalid ballots, thermal paper, 
         USBs, smart cards, security seals, 
         power cable"]
-    scanner-->outputsMaterialScanner
+    scanner ==> outputsMaterialScanner
 
     outputsInformationScanner["digital visual feedback,
         digital audio feedback,
         security statuses, machine IDs"]
-    scanner-.->outputsInformationScanner
+    scanner -.-> outputsInformationScanner
 
-    scanner---->|"valid ballots"|ballotReceptacle
-    scanner<==>|"reaction forces, 
+    scanner ====> |"valid ballots"|ballotReceptacle
+    scanner <--> |"reaction forces, 
         ESD"|ballotReceptacle
 
     inputsMaterialsBallotReceptacle["security seals, keys"]
-    inputsMaterialsBallotReceptacle-->ballotReceptacle
+    inputsMaterialsBallotReceptacle ==> ballotReceptacle
 
     outputsMaterialsBallotReceptacle["scanned ballots, 
         security seals, keys"]
-    ballotReceptacle-->outputsMaterialsBallotReceptacle
+    ballotReceptacle ==> outputsMaterialsBallotReceptacle
 
     outputsInformationBallotReceptacle["system information, 
         security statuses"]
-    ballotReceptacle-.->outputsInformationBallotReceptacle
+    ballotReceptacle -.-> outputsInformationBallotReceptacle
 
-    ups===>|"electrical power, 
+    ups ---> |"electrical power, 
         plug"|scanner
 
     outputsInformationUps["UPS statuses"]
-    ups-.->outputsInformationUps
+    ups -.-> outputsInformationUps
 
     inputsMaterialsUps["plug from mains"]
-    inputsMaterialsUps==>ups
+    inputsMaterialsUps ==> ups
     inputsEnergyUps["electrical power"]
-    inputsEnergyUps==>ups
+    inputsEnergyUps --> ups
 
-    floor<==>|"reaction forces, 
+    floor <--> |"reaction forces, 
         ESD"|ups
-    floor<==>|"reaction forces, 
+    floor <--> |"reaction forces, 
         ESD"|ballotReceptacle
 
     classDef io font-size:10pt,stroke-width:0px;
