@@ -10,8 +10,6 @@ These diagrams represent how different VotingWorks systems function.  They are m
 * Final designs
 * Helping identify failure modes
 
-These are coded with [Mermaid.js](https://mermaid.js.org/).  You can use [Mermaid Live Editor](https://mermaid.live/) to view and export the charts if they don't show on GitHub.
-
 ## Diagrams
 
 ### VxScan 4.0 
@@ -29,6 +27,13 @@ These are coded with [Mermaid.js](https://mermaid.js.org/).  You can use [Mermai
 * Election Administrator
 * Poll Worker
 * Voter (general)
+
+
+## Making, Using, and Sharing Diagrams
+
+These are coded with [Mermaid.js](https://mermaid.js.org/).  Some notes on using this to make/edit/share diagrams:
+* GitHub may not support the latest Mermaid.js syntax.  TO be safe, use quotes-notation for labeling nodes and connections, e.g. `A["my label"]-->|"connector label"|["another one"]` 
+* You can use [Mermaid Live Editor](https://mermaid.live/) to view and export the charts if they don't show on GitHub.
 
 
 ## License

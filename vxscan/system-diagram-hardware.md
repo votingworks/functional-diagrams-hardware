@@ -63,8 +63,8 @@ flowchart LR
         security statuses"]
     ballotReceptacle-.->outputsInformationBallotReceptacle
 
-    ups==>|electrical power, 
-        plug|scanner
+    ups==>|"electrical power, 
+        plug"|scanner
 
     outputsInformationUps["UPS statuses"]
     ups-.->outputsInformationUps
@@ -74,10 +74,10 @@ flowchart LR
     inputsEnergyUps["electrical power"]
     inputsEnergyUps==>ups
 
-    floor<==>|reaction forces, 
-        ESD|ups
-    floor<==>|reaction forces, 
-        ESD|ballotReceptacle
+    floor<==>|"reaction forces, 
+        ESD"|ups
+    floor<==>|"reaction forces, 
+        ESD"|ballotReceptacle
 
     classDef io font-size:10pt,stroke-width:0px;
     class inputsEnergyCommon,inputsMaterialScanner,inputsEnergyCommon,outputsMaterialScanner,outputsMaterialsCommon,outputsEnergyCommon,inputsMaterialsBallotReceptacle,outputsInformationScanner,outputsMaterialsBallotReceptacle,outputsInformationBallotReceptacle,inputsEnergyBallotReceptacle,inputsMaterialsCommon,outputsInformationUps,inputsEnergyUps,inputsMaterialsUps io;
