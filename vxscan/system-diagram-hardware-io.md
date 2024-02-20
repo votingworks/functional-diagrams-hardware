@@ -61,7 +61,7 @@ flowchart LR
         security statuses")
     ballotReceptacle -.-> outputsInformationBallotReceptacle
 
-    ups ==> |"plug"|scanner
+    ups <===> |"plug"|scanner
     ups --> |"electrical power"|scanner
 
     outputsInformationUps("UPS statuses")

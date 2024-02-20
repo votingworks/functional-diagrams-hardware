@@ -24,7 +24,7 @@ flowchart LR
         thermal paper, 
         USBs, smart cards, 
         security seals, 
-        power cable"]
+        power cable, tools"]
     scanner ==> outputsMaterialScanner
 
     outputsInformationScanner["digital visual feedback,
