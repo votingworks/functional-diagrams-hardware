@@ -20,22 +20,45 @@ title: Functional Diagram of VxScan Precinct Scanner Hardware
 
 flowchart TB
 
-    i1.00("Ballot (all types)")
+    i1.00("ballot 
+        (all types)")
     f1.00["Accept ballot"]
     f1.01["Align and direct ballot"]
     f3.00["Scan ballot"]
     f2.01["Redirect accepted ballot"]
     f2.02["Release accepted ballot"]
-    o2.02["Accepted ballot"]
-    s1["Ballot 
-        Receptacle"]
+    o2.02("accepted ballot")
+    s1["Receive accepted ballot 
+        into ballot receptacle"]
     i1.00 ==> f1.00 ==> f1.01 ==> f3.00 ==> f2.01 ==> f2.02 ==> o2.02 ==> s1
+    o1.00("indicator of where
+        to insert ballot")
+    f1.00 -.-> o1.00
+    i1.01("gravity")
+    i1.01 --> f1.01
+    i2.02("gravity")
+    i2.02 --> f2.02
 
+    f2.03["Redirect rejected ballot"]
+    f2.04["Hold rejected ballot"]
+    f2.05["Release rejected ballot 
+        back to user"]
+    o2.05("rejected ballot")
+    f3.00 ==> f2.03 ==> f2.04 ==> f2.05 ==> o2.05
+    i2.04("gravity")
+    i2.04 --> f2.04
+    o2.04("indicator of where
+        to get rejected ballot")
+    f2.04 -.-> o2.04
 
-
-    classDef io font-size:10pt,stroke-width:0px,fill-opacity:0;
-    class i1.00,o2.02 io;
+    %% styling
+    classDef ioMaterials font-size:10pt,stroke-width:0px,fill-opacity:0,color:blue;
+    classDef ioEnergy font-size:10pt,stroke-width:0px,fill-opacity:0,color:red;
+    classDef ioInformation font-size:10pt,stroke-width:0px,fill-opacity:0,color:green;    
     classDef system font-size:14pt,stroke-width:2px;
+    class i1.00,o2.02,o2.05 ioMaterials;
+    class i1.01,i2.02,i2.04 ioEnergy;
+    class o1.00,o2.04 ioInformation;
     class s1 system;
 
 ```
