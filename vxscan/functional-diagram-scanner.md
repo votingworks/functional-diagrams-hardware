@@ -7,7 +7,7 @@ the Voluntary Voting System Guidelines (VVSG 2.0).
 f = function
 i = input
 o = output 
-s = another system outside the scanner
+s = function from another system outside the scanner
 The numbers in the node name correspond with the VotingWorks dFMEA document as of February 2024.
 Each block of nodes and connections represent roughly a functional chain for one type of major input and output.
 -->
@@ -25,17 +25,22 @@ flowchart TB
         (all types)")
     f1.00["Accept ballot"]
     f1.01["Align and direct ballot"]
+    f1.02["Detect ballot presence
+        before scanning"]
     f3.00["Scan ballot"]
     f2.01["Redirect accepted ballot"]
     f2.02["Release accepted ballot"]
     o2.02("accepted ballot")
-    s1["Receive accepted ballot 
-        into ballot receptacle"]
-    i1.00 ==> f1.00 ==> f1.01 ==> f3.00 ==> f2.01 ==> f2.02 ==> o2.02 ==> s1
+    s1{{"Receive accepted ballot 
+        into Ballot Receptacle"}}
+    i1.00 ==> f1.00 ===> f1.01 ===> f1.02 ==> f3.00 ==> f2.01 ==> f2.02 ==> o2.02 ==> s1
     f1.00 -.-> o1.00("indicator of where
         to insert ballot")
     i1.01("gravity") --> f1.01
     i2.02("gravity") --> f2.02
+    f3.00 --> o3.00a("noise, vibration, heat,
+        ESD, RF, EMI")
+    f3.00 ==> o3.00b("paper dust")
 
     %% function chain: rejected ballots
     f2.03["Redirect rejected ballot"]
@@ -59,20 +64,61 @@ flowchart TB
     i2.07("gravity") --> f2.07
     f2.07 -.-> o2.07("indicator of where
         to get jammed ballot")
-    i2.08a("force") --> f2.08
+    i2.08a("human force") --> f2.08
     i2.08b("hand") <==> f2.08
-    i2.09a("force") --> f2.09
+    i2.09a("human force") --> f2.09
     i2.09b("hand") <==> f2.09
 
+    %% function chain: electrical power
+    s2{{"Transmit stable
+        electrical power from
+        Universal Power Supply 
+        (UPS)"}}
+    i22.01("electrical power")
+    f22.01["Accept electrical 
+        power"]
+    s2 --> i22.01 --> f22.01
+
+    i22.02("power cable plug")
+    f22.02["Accept power 
+        cable plug"]
+    s2 <==> i22.02 ===> f22.02 ==> f22.01
+    f22.05["Release power 
+        cable plug"]
+    f22.02 ==> f22.05 ==> i22.02
+    i22.02a("human force") --> f22.02 & f22.05
+    i22.02b("hand") <==> f22.02 & f22.05
+
+    f22.03["Transmit and protect
+        electrical power"]
+    f22.03 --> o22.03("RF, EMI")
+    f22.04["Control electrical 
+        system (CPU)"]
+    f22.04 --> o22.04("heat, RF, EMI")
+    f22.01 --> f22.03 --> f22.04 & f1.02 & f3.00 
+    f6.01["Display and direct 
+        visual information"]
+    f6.02["Synchronize visual 
+        and audio information"]
+    f6.03["Play and direct
+        audio information"]
+    f6.02 -.-> f6.01 & f6.03
+    f22.04 --> f6.01 & f6.02 & f6.03
+    f6.01 -.-> o6.01("screen output")
+    f6.03 -.-> o6.03("audio output")
+
+
+    %% selected key information flows to/from CPU (not all of them)
+    f22.04 <-.-> f3.00
 
     %% styling
     classDef ioMaterials font-size:10pt,stroke-width:0px,fill-opacity:0,color:blue;
     classDef ioEnergy font-size:10pt,stroke-width:0px,fill-opacity:0,color:red;
     classDef ioInformation font-size:10pt,stroke-width:0px,fill-opacity:0,color:green;    
-    classDef system font-size:14pt,stroke-width:2px;
-    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b ioMaterials;
-    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a ioEnergy;
-    class o1.00,o2.04,o2.07 ioInformation;
-    class s1 system;
+    classDef system font-size:14pt,stroke-width:3px;
+    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a ioMaterials;
+    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b ioEnergy;
+    class o1.00,o2.04,o2.07,o6.01,o6.03 ioInformation;
+    class s1,s2 system;
 
 ```
