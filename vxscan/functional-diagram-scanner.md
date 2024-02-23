@@ -71,48 +71,52 @@ flowchart TB
         i2.09a("human forces") --> f2.09
     end
 
-    %% function chain: electrical power
-    s2{{"Transmit stable
+    %% function tree: electrical power
+    subgraph electricalPower["Electrical power and signals"]
+        s2{{"Transmit stable
         electrical power from
         Universal Power Supply 
         (UPS)"}}
-    i22.01("electrical power")
-    f22.01["Accept electrical 
-        power"]
-    s2 ----> i22.01 ----> f22.01
+        i22.01("electrical power")
+        f22.01["Accept electrical 
+            power"]
+        s2 ----> i22.01 ----> f22.01
 
-    i22.02("power cable")
-    f22.02["Accept power 
-        cable plug"]
-    s2 <===> i22.02 ====> f22.02 ====> f22.01
-    f22.05["Release power 
-        cable plug"]
-    f22.02 ==> f22.05 ==> i22.02
-    i22.02b("hand") <==> f22.02
-    i22.02a("human pushing 
-        force") --> f22.02
-    i22.05b("hand") <==> f22.05
-    i22.05a("human pulling 
-        force") --> f22.05
+        i22.02("power cable")
+        f22.02["Accept power 
+            cable plug"]
+        s2 <===> i22.02 ====> f22.02 ====> f22.01
+        f22.05["Release power 
+            cable plug"]
+        f22.02 ==> f22.05 ==> i22.02
+        i22.02b("hand") <==> f22.02
+        i22.02a("human pushing 
+            force") --> f22.02
+        i22.05b("hand") <==> f22.05
+        i22.05a("human pulling 
+            force") --> f22.05
+        f22.03["Transmit and protect
+            electrical power"]
+        f22.03 --> o22.03("RF, EMI")
+    end
 
-    f22.03["Transmit and protect
-        electrical power"]
-    f22.03 --> o22.03("RF, EMI")
-    f22.04["Control electrical 
-        system (CPU)"]
-    f22.04 --> o22.04("heat, RF, EMI")
-    f22.01 --> f22.03 --> f22.04
-    f22.03 --> f1.02 & f3.00 
-    f6.01["Display and direct 
-        visual information"]
-    f6.02["Synchronize visual 
-        and audio information"]
-    f6.03["Play and direct
-        audio information"]
-    f6.02 -.-> f6.01 & f6.03
-    f22.04 --> f6.01 & f6.02 & f6.03
-    f6.01 -.-> o6.01("screen output")
-    f6.03 -.-> o6.03("audio output")
+    subgraph digitalInformation["Digital information"]
+        f22.04["Control electrical 
+            system (CPU)"]
+        f22.04 --> o22.04("heat, RF, EMI")
+        f22.01 --> f22.03 --> f22.04
+        f22.03 --> f1.02 & f3.00 
+        f6.01["Display and direct 
+            visual information"]
+        f6.02["Synchronize visual 
+            and audio information"]
+        f6.03["Play and direct
+            audio information"]
+        f6.02 -.-> f6.01 & f6.03
+        f22.04 --> f6.01 & f6.02 & f6.03
+        f6.01 -.-> o6.01("screen output")
+        f6.03 -.-> o6.03("audio output")
+    end
 
     subgraph storage["Storage"]
         %% function tree: power cable storage
@@ -152,8 +156,8 @@ flowchart TB
     end
     %% storage function tree connections to other trees
 
-    %% function tree: administrative access
-    subgraph administrativeAccess["Administrative access"]
+    %% function tree: administrative functions and access
+    subgraph administrative["Administrative functions"]
         f14.01["Hide interaction features
             when system not in use"]
         f14.08["Expose interaction features
