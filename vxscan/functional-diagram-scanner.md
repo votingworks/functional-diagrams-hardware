@@ -116,10 +116,10 @@ flowchart TB
     f22.04 <-.-> f3.00
 
     %% styling
-    classDef ioMaterials font-size:10pt,stroke-width:0px,fill-opacity:0,color:blue;
-    classDef ioEnergy font-size:10pt,stroke-width:0px,fill-opacity:0,color:red;
-    classDef ioInformation font-size:10pt,stroke-width:0px,fill-opacity:0,color:green;    
-    classDef system font-size:14pt,stroke-width:3px;
+    classDef ioMaterials font-size:10pt,stroke-width:0px,fill-opacity:0,text-align:center,color:blue;
+    classDef ioEnergy font-size:10pt,stroke-width:0px,fill-opacity:0,text-align:center,color:red;
+    classDef ioInformation font-size:10pt,stroke-width:0px,fill-opacity:0,text-align:center,color:green;    
+    classDef system font-size:14pt,stroke-width:3px,text-align:center;
     class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a ioMaterials;
     class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b ioEnergy;
     class o1.00,o2.04,o2.07,o6.01,o6.03 ioInformation;
