@@ -64,10 +64,10 @@ flowchart TB
     i2.07("gravity") --> f2.07
     f2.07 -.-> o2.07("indicator of where
         to get jammed ballot")
-    i2.08a("human force") --> f2.08
     i2.08b("hand") <==> f2.08
-    i2.09a("human force") --> f2.09
+    i2.08a("human forces") --> f2.08
     i2.09b("hand") <==> f2.09
+    i2.09a("human forces") --> f2.09
 
     %% function chain: electrical power
     s2{{"Transmit stable
@@ -86,8 +86,12 @@ flowchart TB
     f22.05["Release power 
         cable plug"]
     f22.02 ==> f22.05 ==> i22.02
-    i22.02a("human force") --> f22.02 & f22.05
-    i22.02b("hand") <==> f22.02 & f22.05
+    i22.02b("hand") <==> f22.02
+    i22.02a("human pushing 
+        force") --> f22.02
+    i22.05b("hand") <==> f22.05
+    i22.05a("human pulling 
+        force") --> f22.05
 
     f22.03["Transmit and protect
         electrical power"]
@@ -116,8 +120,8 @@ flowchart TB
     classDef ioEnergy font-size:10pt,stroke-width:0px,fill-opacity:0,color:red;
     classDef ioInformation font-size:10pt,stroke-width:0px,fill-opacity:0,color:green;    
     classDef system font-size:14pt,stroke-width:3px;
-    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a ioMaterials;
-    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b ioEnergy;
+    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a ioMaterials;
+    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b ioEnergy;
     class o1.00,o2.04,o2.07,o6.01,o6.03 ioInformation;
     class s1,s2 system;
 
