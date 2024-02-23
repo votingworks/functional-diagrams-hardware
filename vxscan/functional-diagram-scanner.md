@@ -80,12 +80,12 @@ flowchart TB
         i22.01("electrical power")
         f22.01["Accept electrical 
             power"]
-        s2 ----> i22.01 ----> f22.01
+        s2 --> i22.01 --> f22.01
 
         i22.02("power cable")
         f22.02["Accept power 
             cable plug"]
-        s2 <===> i22.02 ====> f22.02 ====> f22.01
+        s2 <==> i22.02 ===> f22.02 ==> f22.01
         f22.05["Release power 
             cable plug"]
         f22.02 ==> f22.05 ==> i22.02
@@ -170,12 +170,17 @@ flowchart TB
         i14.08b("human forces") --> f14.08
 
     end
+    %% flows: expand system, then allow administrative actions, scanning...
     f14.06 --> f28.01 & f28.03
-    f14.06 ---> f1.00
+    f14.06 --> f1.00
+    %% flows: power cable to/from storage
     i22.02 ===> f28.01
     f28.03 ===> i22.02
 
+    %% arrange groups of functions
+    electricalPower~~~digitalInformation~~~paperPath
 
+    electricalPower~~~storage
 
 
     %% selected key information flows to/from CPU (not all of them)
