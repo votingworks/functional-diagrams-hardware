@@ -72,7 +72,7 @@ flowchart TB
     end
 
     %% function tree: electrical power
-    subgraph electricalPower["Electrical power and signals"]
+    subgraph electricalPower["Electrical power"]
         s2{{"Transmit stable
         electrical power from
         Universal Power Supply 
