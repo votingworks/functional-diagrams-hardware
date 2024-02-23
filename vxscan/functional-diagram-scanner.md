@@ -74,9 +74,9 @@ flowchart TB
     %% function tree: electrical power
     subgraph electricalPower["Electrical power"]
         s2{{"Transmit stable
-        electrical power from
-        Universal Power Supply 
-        (UPS)"}}
+            electrical power from
+            Universal Power Supply 
+            (UPS)"}}
         i22.01("electrical power")
         f22.01["Accept electrical 
             power"]
@@ -120,9 +120,8 @@ flowchart TB
 
     subgraph storage["Storage"]
         %% function tree: power cable storage
-        f28.01["Accept whole 
-            power cable 
-            for storage"]
+        f28.01["Accept whole power 
+            cable for storage"]
         f28.02["Secure and store
             power cable"]
         f28.03["Release power cable
@@ -158,6 +157,7 @@ flowchart TB
 
     %% function tree: administrative functions and access
     subgraph administrative["Administrative functions"]
+        %% access door
         f14.01["Hide interaction features
             when system not in use"]
         f14.08["Expose interaction features
@@ -168,6 +168,33 @@ flowchart TB
         i14.01b("human forces") --> f14.01
         i14.08a("hand") <==> f14.08
         i14.08b("human forces") --> f14.08
+
+        %% thermal printer and reports
+        f9.01["Accept thermal paper"]
+        f9.02["Print on thermal paper"]
+        f9.03["Hold report printed 
+            on thermal paper"]
+        f9.04["Release report printed
+            on thermal paper"]
+        o9.04("printed report")
+        f9.01 ==> f9.02 ==> f9.03 ==> f9.04 ==> o9.04
+        f14.08 --> f9.01
+        f9.04 ----------> f14.01
+        i9.01a("hand") <==> f9.01
+        i9.01b("human force, 
+            gravity") --> f9.01
+        f9.01 -.-> o9.01("indicator of where
+            to insert thermal paper")
+        f9.02 --> o9.02("noise, vibration, heat,
+            ESD, RF, EMI")
+        f9.03 -.-> o9.03("indicator of where
+            to retrieve report")
+
+        %% smart card
+
+
+        %% data storage device (USB sticks)
+        
 
     end
     %% flows: expand system, then allow administrative actions, scanning...
@@ -180,7 +207,7 @@ flowchart TB
     %% arrange groups of functions
     electricalPower~~~digitalInformation~~~paperPath
 
-    electricalPower~~~storage
+    electricalPower~~~storage~~~administrative
 
 
     %% selected key information flows to/from CPU (not all of them)
@@ -191,9 +218,9 @@ flowchart TB
     classDef ioEnergy font-size:10pt,stroke-width:0px,fill-opacity:0,text-align:center,color:red;
     classDef ioInformation font-size:10pt,stroke-width:0px,fill-opacity:0,text-align:center,color:green;    
     classDef system font-size:14pt,stroke-width:3px,text-align:center;
-    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a ioMaterials;
-    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b ioEnergy;
-    class o1.00,o2.04,o2.07,o6.01,o6.03 ioInformation;
+    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04 ioMaterials;
+    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02 ioEnergy;
+    class o1.00,o2.04,o2.07,o6.01,o6.03,o9.01,o9.03 ioInformation;
     class s1,s2 system;
 
 ```
