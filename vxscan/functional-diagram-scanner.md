@@ -190,8 +190,10 @@ flowchart TB
                 to retrieve report")
         end
 
-        f9.04 --> f14.01
-        f14.08 --> f9.01
+        printing --> f14.01
+        f14.08 --> printing
+%%        f9.04 --> f14.01
+%%        f14.08 --> f9.01
 
         subgraph dataStorage["Data storage"]
             %% data storage device (USB sticks)
@@ -216,10 +218,12 @@ flowchart TB
             f5.03 <-.-> f22.04
         end
 
-        f14.08 --> f5.01
-        f14.08 --> f5.04
-        f5.02 --> f14.01
-        f5.04 --> f14.01
+        dataStorage --> f14.01
+        f14.08 --> dataStorage
+%%        f14.08 --> f5.01
+%%        f14.08 --> f5.04
+%%        f5.02 --> f14.01
+%%        f5.04 --> f14.01
 
         subgraph loggingIn["Logging in"]
             %% smart card
