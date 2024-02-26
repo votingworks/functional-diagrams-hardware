@@ -20,7 +20,7 @@ title: Functional Diagram of VxScan Precinct Scanner Hardware
 
 flowchart TB
 
-    subgraph paperPath["Paper path"]
+    subgraph paperPath["Paper Path"]
         %% function chain: accepted ballots 
         i1.00("ballot 
             (all types)")
@@ -72,7 +72,7 @@ flowchart TB
     end
 
     %% function tree: electrical power
-    subgraph electricalPower["Electrical power"]
+    subgraph electricalPower["Electrical Power"]
         s2{{"Transmit stable
             electrical power from
             Universal Power Supply 
@@ -100,7 +100,7 @@ flowchart TB
         f22.03 --> o22.03("RF, EMI")
     end
 
-    subgraph digitalInformation["Digital information"]
+    subgraph digitalInformation["Digital Information"]
         f22.04["Control electrical 
             system (CPU)"]
         f22.04 --> o22.04("heat, RF, EMI")
@@ -118,7 +118,7 @@ flowchart TB
         f6.03 -.-> o6.03("audio output")
     end
 
-    subgraph storage["Storage"]
+    subgraph storage["Physical Storage"]
         %% function tree: power cable storage
         f28.01["Accept whole power 
             cable for storage"]
@@ -155,7 +155,7 @@ flowchart TB
     end
 
     %% function tree: administrative access
-    subgraph administrativeAccess["Administrative access"]
+    subgraph administrativeAccess["Administrative Access"]
         %% access door
         f14.01["Hide adminstrative interaction 
             features when system not in use"]
@@ -168,7 +168,7 @@ flowchart TB
         i14.08a("hand") <==> f14.08
         i14.08b("human forces") --> f14.08
 
-        subgraph printing["Printing reports"]
+        subgraph printing["Printing Reports"]
             %% thermal printer and reports
             i9.01("thermal paper")
             f9.01["Accept thermal paper"]
@@ -195,7 +195,7 @@ flowchart TB
 %%        f9.04 --> f14.01
 %%        f14.08 --> f9.01
 
-        subgraph dataStorage["Data storage"]
+        subgraph dataStorage["Data Storage"]
             %% data storage device (USB sticks)
             i5.01a("data storage 
                 device (USB stick)")
@@ -215,7 +215,7 @@ flowchart TB
             f5.03 --> o5.03("noise, vibration, heat,
                 ESD, RF, EMI")
             i5.01b("human pushing force") --> f5.01
-            f5.03 <-.-> f22.04
+            i5.04("human pulling force") --> f5.04
         end
 
         dataStorage --> f14.01
@@ -225,7 +225,7 @@ flowchart TB
 %%        f5.02 --> f14.01
 %%        f5.04 --> f14.01
 
-        subgraph loggingIn["Logging in"]
+        subgraph loggingIn["Logging In"]
             %% smart card
 
         end
@@ -243,10 +243,12 @@ flowchart TB
     %% arrange groups of functions
     electricalPower~~~digitalInformation~~~paperPath
     storage~~~electricalPower
-    dataStorage~~~printing
+%%    dataStorage~~~printing
 
     %% selected key information flows to/from CPU (not all of them)
     f22.04 <-.-> f3.00
+    f5.03 <-.-> f22.04
+
 
     %% styling
     classDef ioMaterials font-size:10pt,stroke-width:0px,fill-opacity:0,text-align:center,color:blue;
@@ -254,7 +256,7 @@ flowchart TB
     classDef ioInformation font-size:10pt,stroke-width:0px,fill-opacity:0,text-align:center,color:green;    
     classDef system font-size:14pt,stroke-width:3px,text-align:center;
     class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04 ioMaterials;
-    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b ioEnergy;
+    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04 ioEnergy;
     class o1.00,o2.04,o2.07,o6.01,o6.03,o9.01,o9.03 ioInformation;
     class s1,s2 system;
 
