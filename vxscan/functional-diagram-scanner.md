@@ -167,7 +167,66 @@ flowchart TB
         i14.01b("human forces") --> f14.01
         i14.08a("hand") <==> f14.08
         i14.08b("human forces") --> f14.08
+
+        subgraph printing["Printing reports"]
+            %% thermal printer and reports
+            i9.01("thermal paper")
+            f9.01["Accept thermal paper"]
+            f9.02["Print on thermal paper"]
+            f9.03["Hold report printed 
+                on thermal paper"]
+            f9.04["Release report printed
+                on thermal paper"]
+            o9.04("printed report")
+            i9.01 ==> f9.01 ==> f9.02 ==> f9.03 ==> f9.04 ==> o9.04
+            i9.01a("hand") <==> f9.01
+            i9.01b("human force, 
+                gravity") --> f9.01
+            f9.01 -.-> o9.01("indicator of where
+                to insert thermal paper")
+            f9.02 --> o9.02("noise, vibration, heat,
+                ESD, RF, EMI")
+            f9.03 -.-> o9.03("indicator of where
+                to retrieve report")
+        end
+
+        f9.04 --> f14.01
+        f14.08 --> f9.01
+
+        subgraph dataStorage["Data storage"]
+            %% data storage device (USB sticks)
+            i5.01a("data storage 
+                device (USB stick)")
+            f5.01["Accept data storage 
+                device (USB stick)"]
+            f5.02["Secure data storage 
+                device (USB stick)"]
+            f5.03["Read data from and 
+                write data to data storage 
+                device (USB stick)"]
+            f5.04["Release data storage 
+                device (USB stick)"]
+            o5.04("data storage
+                device (USB stick)")
+            i5.01a ==> f5.01 ==> f5.02 ==> f5.03 ==> f5.04 ==> o5.04
+            f22.03 --> f5.03
+            f5.03 --> o5.03("noise, vibration, heat,
+                ESD, RF, EMI")
+            i5.01b("human pushing force") --> f5.01
+            f5.03 <-.-> f22.04
+        end
+
+        f14.08 --> f5.01
+        f14.08 --> f5.04
+        f5.02 --> f14.01
+        f5.04 --> f14.01
+
+        subgraph loggingIn["Logging in"]
+            %% smart card
+
+        end
     end
+
 
     %% flows: expand system, then allow administrative actions, scanning...
     f14.06 --> f28.01 & f28.03
@@ -176,69 +235,11 @@ flowchart TB
     i22.02 ===> f28.01
     f28.03 ===> i22.02
 
-    subgraph printing["Printing reports"]
-        %% thermal printer and reports
-        i9.01("thermal paper")
-        f9.01["Accept thermal paper"]
-        f9.02["Print on thermal paper"]
-        f9.03["Hold report printed 
-            on thermal paper"]
-        f9.04["Release report printed
-            on thermal paper"]
-        o9.04("printed report")
-        i9.01 ==> f9.01 ==> f9.02 ==> f9.03 ==> f9.04 ==> o9.04
-        f14.08 --> f9.01
-        f9.04 ----------> f14.01
-        i9.01a("hand") <==> f9.01
-        i9.01b("human force, 
-            gravity") --> f9.01
-        f9.01 -.-> o9.01("indicator of where
-            to insert thermal paper")
-        f9.02 --> o9.02("noise, vibration, heat,
-            ESD, RF, EMI")
-        f9.03 -.-> o9.03("indicator of where
-            to retrieve report")
-    end
-
-    subgraph dataStorage["Data storage"]
-        %% data storage device (USB sticks)
-        i5.01a("data storage 
-            device (USB stick)")
-        f5.01["Accept data storage 
-            device (USB stick)"]
-        f5.02["Secure data storage 
-            device (USB stick)"]
-        f5.03["Read data from and 
-            write data to data storage 
-            device (USB stick)"]
-        f5.04["Release data storage 
-            device (USB stick)"]
-        o5.04("data storage
-            device (USB stick)")
-        i5.01a ==> f5.01 ==> f5.02 ==> f5.03 ==> f5.04 ==> o5.04
-        f22.03 --> f5.03
-        f14.08 --> f5.01
-        f14.08 --> f5.04
-        f5.02 --> f14.01
-        f5.04 --> f14.01
-        f5.03 --> o5.03("noise, vibration, heat,
-            ESD, RF, EMI")
-        i5.01b("human pushing force") --> f5.01
-        f5.03 <-.-> f22.04
-    end
-
-    subgraph loggingIn["Logging in"]
-        %% smart card
-
-    end
 
     %% arrange groups of functions
     electricalPower~~~digitalInformation~~~paperPath
     storage~~~electricalPower
     dataStorage~~~printing
-%%    administrativeAccess~~~printing
-%%    administrativeAccess~~~dataStorage
-%%    administrativeAccess~~~loggingIn
 
     %% selected key information flows to/from CPU (not all of them)
     f22.04 <-.-> f3.00
