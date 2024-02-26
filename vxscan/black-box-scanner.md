@@ -74,7 +74,7 @@ flowchart LR
         power cable (for internal storage)
         dirt/dust
         ballot receptacle interfaces
-        tools-output"]
+        tools"]
     end
 
     subgraph outputEnergy["Energy Outputs"]
