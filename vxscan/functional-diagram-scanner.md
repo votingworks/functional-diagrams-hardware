@@ -153,23 +153,32 @@ flowchart TB
         i14.06b("human forces") --> f14.06
 
     end
-    %% storage function tree connections to other trees
 
-    %% function tree: administrative functions and access
-    subgraph administrative["Administrative functions"]
+    %% function tree: administrative access
+    subgraph administrativeAccess["Administrative access"]
         %% access door
-        f14.01["Hide interaction features
-            when system not in use"]
-        f14.08["Expose interaction features
-            when needed"]
+        f14.01["Hide adminstrative interaction 
+            features when system not in use"]
+        f14.08["Expose administrative interaction 
+            features when needed"]
         f14.01 --> f14.05
         f14.06 --> f14.08 --> f14.01
         i14.01a("hand") <==> f14.01
         i14.01b("human forces") --> f14.01
         i14.08a("hand") <==> f14.08
         i14.08b("human forces") --> f14.08
+    end
 
+    %% flows: expand system, then allow administrative actions, scanning...
+    f14.06 --> f28.01 & f28.03
+    f14.06 --> f1.00
+    %% flows: power cable to/from storage
+    i22.02 ===> f28.01
+    f28.03 ===> i22.02
+
+    subgraph printing["Printing reports"]
         %% thermal printer and reports
+        i9.01("thermal paper")
         f9.01["Accept thermal paper"]
         f9.02["Print on thermal paper"]
         f9.03["Hold report printed 
@@ -177,7 +186,7 @@ flowchart TB
         f9.04["Release report printed
             on thermal paper"]
         o9.04("printed report")
-        f9.01 ==> f9.02 ==> f9.03 ==> f9.04 ==> o9.04
+        i9.01 ==> f9.01 ==> f9.02 ==> f9.03 ==> f9.04 ==> o9.04
         f14.08 --> f9.01
         f9.04 ----------> f14.01
         i9.01a("hand") <==> f9.01
@@ -189,26 +198,47 @@ flowchart TB
             ESD, RF, EMI")
         f9.03 -.-> o9.03("indicator of where
             to retrieve report")
+    end
 
+    subgraph dataStorage["Data storage"]
+        %% data storage device (USB sticks)
+        i5.01a("data storage 
+            device (USB stick)")
+        f5.01["Accept data storage 
+            device (USB stick)"]
+        f5.02["Secure data storage 
+            device (USB stick)"]
+        f5.03["Read data from and 
+            write data to data storage 
+            device (USB stick)"]
+        f5.04["Release data storage 
+            device (USB stick)"]
+        o5.04("data storage
+            device (USB stick)")
+        i5.01a ==> f5.01 ==> f5.02 ==> f5.03 ==> f5.04 ==> o5.04
+        f22.03 --> f5.03
+        f14.08 --> f5.01
+        f14.08 --> f5.04
+        f5.02 --> f14.01
+        f5.04 --> f14.01
+        f5.03 --> o5.03("noise, vibration, heat,
+            ESD, RF, EMI")
+        i5.01b("human pushing force") --> f5.01
+        f5.03 <-.-> f22.04
+    end
+
+    subgraph loggingIn["Logging in"]
         %% smart card
 
-
-        %% data storage device (USB sticks)
-        
-
     end
-    %% flows: expand system, then allow administrative actions, scanning...
-    f14.06 --> f28.01 & f28.03
-    f14.06 --> f1.00
-    %% flows: power cable to/from storage
-    i22.02 ===> f28.01
-    f28.03 ===> i22.02
 
     %% arrange groups of functions
     electricalPower~~~digitalInformation~~~paperPath
-
-    electricalPower~~~storage~~~administrative
-
+    storage~~~electricalPower
+    dataStorage~~~printing
+%%    administrativeAccess~~~printing
+%%    administrativeAccess~~~dataStorage
+%%    administrativeAccess~~~loggingIn
 
     %% selected key information flows to/from CPU (not all of them)
     f22.04 <-.-> f3.00
@@ -218,8 +248,8 @@ flowchart TB
     classDef ioEnergy font-size:10pt,stroke-width:0px,fill-opacity:0,text-align:center,color:red;
     classDef ioInformation font-size:10pt,stroke-width:0px,fill-opacity:0,text-align:center,color:green;    
     classDef system font-size:14pt,stroke-width:3px,text-align:center;
-    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04 ioMaterials;
-    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02 ioEnergy;
+    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04 ioMaterials;
+    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b ioEnergy;
     class o1.00,o2.04,o2.07,o6.01,o6.03,o9.01,o9.03 ioInformation;
     class s1,s2 system;
 
