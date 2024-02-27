@@ -148,8 +148,8 @@ flowchart LR
         f6.01 -.-> o6.01("screen output")
         f6.03 -.-> o6.03("audio output")
 
-        f22.04 -.-> o22.04b["alerts of system 
-            malfunctions"]
+        f22.04 -.-> o22.04b("alerts of system 
+            malfunctions, tampering")
 
         %% function tree: touch input
         f7.02["Receive tactile feedback 
@@ -160,7 +160,7 @@ flowchart LR
         f22.03 --> f7.02        
     end
 
-    subgraph storage["Physical Storage"]
+    subgraph storage["Storage and Transport"]
         %% function tree: power cable storage
         f28.01["Accept whole power 
             cable for storage"]
@@ -193,6 +193,40 @@ flowchart LR
         i14.05b("human forces") --> f14.05
         i14.06a("hand") <==> f14.06
         i14.06b("human forces") --> f14.06
+
+        %% shock 
+        i15.07("impact force, 
+            gravity, weight")
+        f15.07["Resist damage from 
+            drops, falls"]
+        o15.07a("noise")
+        o15.07b("debris")
+        i15.07 --> f15.07 --> o15.07a
+        f15.07 ==> o15.07b 
+
+        %% sliding
+        i15.08("friction, horizontal forces")
+        f15.08["Resist damage from 
+            sliding"]
+        o15.08a("noise")
+        o15.08b("debris")
+        i15.08 --> f15.08 --> o15.08a
+        f15.08 ==> o15.08b
+
+        %% storage configuration
+        i15.09("gravity")
+        f15.09["Resist damage from 
+            storing on its side"]
+        f15.10["Resist damage from 
+            storing upside-down"]
+        i15.09 --> f15.09 & f15.10
+
+        %% transport
+        i15.11("packaging material")
+        f15.11["Accept packaging materials 
+            around system"]
+        i15.11 <==> f15.11
+
 
     end
 
@@ -375,7 +409,26 @@ flowchart LR
 
 
     %% function tree: environmental systems
-    subgraph environmental["Environmental Handling"]
+    subgraph environmental["Environmental Protection"]
+        %% internal heat transfer
+        f26.01["Absorb and transfer heat"]
+        f26.02["Release heat"]
+        f26.02 --> o26.02("heat")
+        f26.01 --> f26.02
+        %% absorb heat from different components
+        f22.04 --> f26.01
+        f22.03 & f9.02 & f5.03 & f8.03-------> f26.01
+
+        %% external heat
+        i26.03("external heat") <--> f26.03["Reject external heat"]
+        i26.04("sunlight") --> f26.03
+
+        %% external ingress
+        i26.04("humidity, liquids") <==> f26.04["Resist ingress of 
+            humidity and liquids"]
+        f26.06["Resist damage from 
+            environmental dryness"]
+
         %% cleaning
         i26.05a("cleaning materials")
         i26.05b("human force")
@@ -387,14 +440,11 @@ flowchart LR
         o26.05b("dirt, dust, residues")
         f26.05 ==> o26.05a & o26.05b
 
-        %% heat transfer
-        f26.01["Absorb and transfer heat"]
-        f26.02["Release heat"]
-        f26.02 --> o26.02("heat")
-        f26.01 --> f26.02
-        %% absorb heat from different components
-        f22.04 --> f26.01
-        f22.03 & f9.02 & f5.03 & f8.03-------> f26.01
+        %% vibration
+        i15.06("vibration")
+        f15.06["Absorb and dampen vibrations"]
+        o15.06("vibration, sound")
+        i15.06 --> f15.06 --> o15.06
     end
 
     subgraph securityGeneral["General Security"]
@@ -405,7 +455,9 @@ flowchart LR
             electronic ports"]
         f24.12["Prevent ingress into system 
             from disallowed tools"]
-        f24.13["Prevent ballot stuffing"]
+        f24.13["Prevent ingress into system 
+            from ballots or paper everywhere 
+            except intended interfaces (Prevent ballot stuffing)"]
 
         i24.07("security seals")
         f24.07["Accept security seals over 
@@ -416,7 +468,9 @@ flowchart LR
         i24.08("hand/tool") <==> f24.08 
         f24.09["Leave evidence of 
             security seal removal"]
-        f24.08 ==> f24.09 ==> f26.05
+        o24.09("evidence of security
+            seal removal")
+        f24.08 ==> f24.09 -.-> o24.09
 
     end
 
@@ -443,9 +497,9 @@ flowchart LR
     classDef system font-size:14pt,stroke-width:3px,text-align:center;
     classDef subsubsystem fill:lightblue,fill-opacity:0.3,stroke-width:1px;
     classDef security fill:orange,fill-opacity:0.3;
-    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04,i8.01a,o8.04,i7.02a,i16.01,o16.03,i24.07,o24.09,o26.05a,o26.05b,i26.05a,i24.08 ioMaterials;
-    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04,i8.01b,o26.02,i7.02b,o16.07,o16.06,i17.06,i26.05b ioEnergy;
-    class o1.00,o2.04,o2.07,o3.00c,o6.01,o6.03,o9.01,o9.03,o5.01,o8.01,o17.02,o22.04b ioInformation;
+    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04,i8.01a,o8.04,i7.02a,i16.01,o16.03,i24.07,o24.09,o26.05a,o26.05b,i26.05a,i24.08,i26.04,o15.07b,o15.08b,i15.11 ioMaterials;
+    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04,i8.01b,o26.02,i7.02b,o16.07,o16.06,i17.06,i26.05b,i26.03,i15.06,o15.06,i26.04,i15.07,o15.07a,o15.08a,i15.08,i15.09 ioEnergy;
+    class o1.00,o2.04,o2.07,o3.00c,o6.01,o6.03,o9.01,o9.03,o5.01,o8.01,o17.02,o22.04b,o24.09 ioInformation;
     class s1,s2 system;
     class printing,dataStorage,accessControl subsubsystem;
     class securityTieAccessPanel,securityTieBallotReceptacle,securityGeneral security;
