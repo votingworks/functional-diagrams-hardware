@@ -129,15 +129,6 @@ flowchart TB
         f22.03 --> f7.02        
     end
 
-    subgraph stability["Mechanical Stability"]
-        f7.03["Resist force, torque, 
-            and motion"]
-        f7.02 --> f7.03
-        f16.07["Transfer forces and 
-            torque to ballot box"]
-
-    end
-
     subgraph storage["Physical Storage"]
         %% function tree: power cable storage
         f28.01["Accept whole power 
@@ -276,8 +267,11 @@ flowchart TB
             i24.02.1 ==> f24.02.1 ==> f24.03.1 ==> f24.04.1 ==> o24.04.1
             i24.04a.1("hand/tool") <==> f24.04.1
             i24.04b.1("human force") --> f24.04.1 
+            f24.04.1 -.-> o24.04.1b("evidence of tampering
+                with security tie or tie point")
             class i24.02.1,o24.04.1,i24.01a.1,i24.04a.1 ioMaterials;
             class i24.01b.1,i24.04b.1 ioEnergy;
+            class o24.04.1b ioInformation;
         end
 
         f14.01 --> f24.02.1
@@ -305,6 +299,55 @@ flowchart TB
         f22.03 & f9.02 & f5.03 & f8.03-------> f26.01
     end
 
+    subgraph stability["Mechanical Stability"]
+        i16.01("interface to 
+            ballot box")
+        f16.01["Accept interface to 
+            ballot box"]
+        f16.02["Secure interface to 
+            ballot box"]
+        f16.03["Release interface to 
+            ballot box"]
+        o16.03("interface to
+            ballot box")
+        i16.01 ==> f16.01 ==> f16.02 ==> f16.03 ==> o16.03
+        f16.07["Transfer forces and 
+            torque to ballot box"]
+        f7.03 --> f16.07
+        f16.07 --> o16.07("forces and torque 
+            to ballot box")
+        f16.02 ==> f16.07
+        f7.03["Resist force, torque, 
+            and motion"]
+        f7.02 --------> f7.03
+        f16.02 ====> f24.02.2
+        f16.05["Prevent outside materials 
+            from entering at interface of 
+            scanner and ballot box"]
+        f16.02 ==> f16.05
+        f24.04.2 ==> f16.03
+
+        %% security tie
+        subgraph securityTieBallotReceptacle["Security Tie Point"]
+            i24.02.2("security tie")
+            f24.02.2["Accept security tie"]
+            i24.01a.2("hand/tool") <==> f24.02.2
+            i24.01b.2("human force") --> f24.02.2
+            f24.03.2["Hold security tie 
+                in place"]
+            f24.04.2["Release security tie"]
+            o24.04.2("security tie")
+            i24.02.2 ==> f24.02.2 ==> f24.03.2 ==> f24.04.2 ==> o24.04.2
+            i24.04a.2("hand/tool") <==> f24.04.2
+            i24.04b.2("human force") --> f24.04.2 
+            f24.04.2 -.-> o24.04.2b("evidence of tampering
+                with security tie or tie point")
+            class i24.02.2,o24.04.2,i24.01a.2,i24.04a.2 ioMaterials;
+            class i24.01b.2,i24.04b.2 ioEnergy;
+            class o24.04.2b ioInformation;
+        end
+
+    end
 
     %% arrange groups of functions
 %%    electricalPower~~~digitalInteractions~~~paperPath
@@ -329,12 +372,12 @@ flowchart TB
     classDef system font-size:14pt,stroke-width:3px,text-align:center;
     classDef subsubsystem fill:lightblue,fill-opacity:0.3,stroke-width:1px;
     classDef security fill:orange,fill-opacity:0.3;
-    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04,i8.01a,o8.04,i7.02a ioMaterials;
-    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04,i8.01b,o26.02,i7.02b ioEnergy;
+    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04,i8.01a,o8.04,i7.02a,i16.01,o16.03 ioMaterials;
+    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04,i8.01b,o26.02,i7.02b,o16.07 ioEnergy;
     class o1.00,o2.04,o2.07,o6.01,o6.03,o9.01,o9.03,o5.01,o8.01 ioInformation;
     class s1,s2 system;
     class printing,dataStorage,accessControl subsubsystem;
-    class securityTieAccessPanel security;
+    class securityTieAccessPanel,securityTieBallotReceptacle security;
     
 
 
