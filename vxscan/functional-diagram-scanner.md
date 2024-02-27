@@ -42,6 +42,8 @@ flowchart LR
         f3.00 --> o3.00a("noise, vibration, heat,
             ESD, RF, EMI")
         f3.00 ==> o3.00b("paper dust")
+        f3.00 -.-> o3.00c("indicator or alert
+            of ballot status")
 
         %% function chain: rejected ballots
         f2.03["Redirect rejected ballot"]
@@ -145,6 +147,9 @@ flowchart LR
         f22.04 --> f6.01 & f6.03
         f6.01 -.-> o6.01("screen output")
         f6.03 -.-> o6.03("audio output")
+
+        f22.04 -.-> o22.04b["alerts of system 
+            malfunctions"]
 
         %% function tree: touch input
         f7.02["Receive tactile feedback 
@@ -314,17 +319,6 @@ flowchart LR
     f28.03 ===> i22.02
 
 
-    %% function tree: heat transfer
-    subgraph cooling["Cooling System"]
-        f26.01["Absorb and transfer heat"]
-        f26.02["Release heat"]
-        f26.02 --> o26.02("heat")
-        f26.01 --> f26.02
-        %% absorb heat from different components
-        f22.04 --> f26.01
-        f22.03 & f9.02 & f5.03 & f8.03-------> f26.01
-    end
-
     subgraph stability["Connection to Ballot Receptacle"]
         i16.01("interface to 
             ballot box")
@@ -379,14 +373,61 @@ flowchart LR
 
     end
 
+
+    %% function tree: environmental systems
+    subgraph environmental["Environmental Handling"]
+        %% cleaning
+        i26.05a("cleaning materials")
+        i26.05b("human force")
+        f26.05["Resist damage from 
+            cleaning materials"]
+        i26.05a ==> f26.05
+        i26.05b --> f26.05
+        o26.05a("cleaning materials")
+        o26.05b("dirt, dust, residues")
+        f26.05 ==> o26.05a & o26.05b
+
+        %% heat transfer
+        f26.01["Absorb and transfer heat"]
+        f26.02["Release heat"]
+        f26.02 --> o26.02("heat")
+        f26.01 --> f26.02
+        %% absorb heat from different components
+        f22.04 --> f26.01
+        f22.03 & f9.02 & f5.03 & f8.03-------> f26.01
+    end
+
+    subgraph securityGeneral["General Security"]
+
+        f24.10["Leave evidence of tampering 
+            with external enclosures"]
+        f24.11["Restrict access to 
+            electronic ports"]
+        f24.12["Prevent ingress into system 
+            from disallowed tools"]
+        f24.13["Prevent ballot stuffing"]
+
+        i24.07("security seals")
+        f24.07["Accept security seals over 
+            key fasteners and ports"]
+        f24.08["Release security seals"]
+        o24.09("security seal, voided")
+        i24.07 ==> f24.07 ==> f24.08 ==> o24.09
+        i24.08("hand/tool") <==> f24.08 
+        f24.09["Leave evidence of 
+            security seal removal"]
+        f24.08 ==> f24.09 ==> f26.05
+
+    end
+
     %% arrange groups of functions
 %%    electricalPower~~~digitalInteractions~~~paperPath
 %%    storage~~~electricalPower
 %%    dataStorage~~~accessControl~~~printing
-    f14.01~~~securityTieAccessPanel~~~f14.08
+%%    f14.01~~~securityTieAccessPanel~~~f14.08
 
     %% selected key information flows to/from CPU (not all of them)
-    f22.04 <-....-> f3.00
+    f22.04 <-.........-> f3.00
     f5.03 <-...-> f22.04
     f8.03 -...-> f22.04
     f22.04 -..-> f9.02
@@ -402,12 +443,12 @@ flowchart LR
     classDef system font-size:14pt,stroke-width:3px,text-align:center;
     classDef subsubsystem fill:lightblue,fill-opacity:0.3,stroke-width:1px;
     classDef security fill:orange,fill-opacity:0.3;
-    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04,i8.01a,o8.04,i7.02a,i16.01,o16.03 ioMaterials;
-    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04,i8.01b,o26.02,i7.02b,o16.07,o16.06,i17.06 ioEnergy;
-    class o1.00,o2.04,o2.07,o6.01,o6.03,o9.01,o9.03,o5.01,o8.01,o17.02 ioInformation;
+    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04,i8.01a,o8.04,i7.02a,i16.01,o16.03,i24.07,o24.09,o26.05a,o26.05b,i26.05a,i24.08 ioMaterials;
+    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04,i8.01b,o26.02,i7.02b,o16.07,o16.06,i17.06,i26.05b ioEnergy;
+    class o1.00,o2.04,o2.07,o3.00c,o6.01,o6.03,o9.01,o9.03,o5.01,o8.01,o17.02,o22.04b ioInformation;
     class s1,s2 system;
     class printing,dataStorage,accessControl subsubsystem;
-    class securityTieAccessPanel,securityTieBallotReceptacle security;
+    class securityTieAccessPanel,securityTieBallotReceptacle,securityGeneral security;
     
 
 
