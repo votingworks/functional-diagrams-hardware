@@ -113,8 +113,10 @@ flowchart TB
         f6.03["Play and direct
             audio information"]
         f6.02 -.-> f6.01 & f6.03
-        f24.01["Restrict access to specific users and roles"]
-        f22.04 --> f6.01 & f6.02 & f6.03
+        f24.01["Restrict access to data to
+            specific users and roles"]
+        f22.04 -.-> f24.01 -.-> f6.02
+        f22.04 --> f6.01 & f6.03
         f6.01 -.-> o6.01("screen output")
         f6.03 -.-> o6.03("audio output")
 
