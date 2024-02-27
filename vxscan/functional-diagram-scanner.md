@@ -85,13 +85,13 @@ flowchart TB
         i22.02("power cable")
         f22.02["Accept power 
             cable plug"]
-        s2 <==> i22.02 ==> f22.02 ==> f22.01
-        f22.05["Release power 
-            cable plug"]
-        f22.02 ==> f22.05 ==> i22.02
         i22.02b("hand") <==> f22.02
         i22.02a("human pushing 
             force") --> f22.02
+        s2 <==> i22.02 ===> f22.02 ==> f22.01
+        f22.05["Release power 
+            cable plug"]
+        f22.02 ==> f22.05 ==> i22.02
         i22.05b("hand") <==> f22.05
         i22.05a("human pulling 
             force") --> f22.05
