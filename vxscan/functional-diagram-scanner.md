@@ -115,13 +115,14 @@ flowchart LR
         f17.02 --> f22.03
         f17.02 -.-> o17.02["cable identifiers, 
             colors, textures"]
+
     end
 
     subgraph digitalInteractions["Digital Interactions"]
         f22.04["Control electrical 
             system (CPU)"]
         f22.04 --> o22.04("heat, RF, EMI")
-        f22.01 --> f22.03 --> f22.04
+        f22.03 --> f22.04
         f22.03 --> f1.02 & f3.00 
         f6.01["Display and direct 
             visual information"]
@@ -318,21 +319,21 @@ flowchart LR
 
     subgraph stability["Connection to Ballot Receptacle"]
         i16.01("interface to 
-            ballot receptacle")
+            ballot box")
         f16.01["Accept interface to 
-            ballot receptacle"]
+            ballot box"]
         f16.02["Secure interface to 
-            ballot receptacle"]
+            ballot box"]
         f16.03["Release interface to 
-            ballot receptacle"]
+            ballot box"]
         o16.03("interface to
-            ballot receptacle")
+            ballot box")
         i16.01 ==> f16.01 ==> f16.02 ==> f16.03 ==> o16.03
         f16.07["Transfer forces and 
-            torque to ballot receptacle"]
+            torque to ballot box"]
         f7.03 --> f16.07
         f16.07 --> o16.07("forces and torque 
-            to ballot receptacle")
+            to ballot box")
         f16.02 ==> f16.07
         f7.03["Resist force, torque, 
             and motion"]
@@ -340,12 +341,12 @@ flowchart LR
         f16.02 ====> f24.02.2
         f16.05["Prevent outside materials 
             from entering at interface of 
-            scanner and ballot receptacle"]
+            scanner and ballot box"]
         f16.02 ==> f16.05
         f24.04.2 ==> f16.03
         f16.06["Conduct ESD to 
             ballot receptacle"]
-        f16.02 --> f16.06 --> o16.06("ESD to ballot receptacle")
+        f16.02 --> f16.06 --> o16.06
         f16.02 ==> f2.02
 
         %% security tie
