@@ -18,7 +18,7 @@ Each block of nodes and connections represent roughly a functional chain for one
 title: Functional Diagram of VxScan Precinct Scanner Hardware
 ---
 
-flowchart TB
+flowchart LR
 
     subgraph paperPath["Paper Path"]
         %% function chain: accepted ballots 
@@ -176,7 +176,7 @@ flowchart TB
         i14.01b("human forces") --> f14.01
         i14.08a("hand") <==> f14.08
         i14.08b("human forces") --> f14.08
-        f14.01 ------> f14.05
+        f14.01 --> f14.05
         f14.06 ---------> f14.08 --> f14.01
         
         subgraph printing["Printing Reports"]
