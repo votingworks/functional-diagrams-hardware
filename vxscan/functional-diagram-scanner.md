@@ -100,7 +100,7 @@ flowchart TB
         f22.03 --> o22.03("RF, EMI")
     end
 
-    subgraph digitalInformation["Digital Information"]
+    subgraph digitalInteractions["Digital Interactions"]
         f22.04["Control electrical 
             system (CPU)"]
         f22.04 --> o22.04("heat, RF, EMI")
@@ -113,9 +113,27 @@ flowchart TB
         f6.03["Play and direct
             audio information"]
         f6.02 -.-> f6.01 & f6.03
+        f24.01["Restrict access to specific users and roles"]
         f22.04 --> f6.01 & f6.02 & f6.03
         f6.01 -.-> o6.01("screen output")
         f6.03 -.-> o6.03("audio output")
+
+        %% function tree: touch input
+        f7.02["Receive tactile feedback 
+            and forces from touch"]
+        i7.02a("hand") <==> f7.02
+        i7.02b("human pushing force") --> f7.02
+        f7.02 -.-> f22.04
+        f22.03 --> f7.02        
+    end
+
+    subgraph stability["Mechanical Stability"]
+        f7.03["Resist force, torque, 
+            and motion"]
+        f7.02 --> f7.03
+        f16.07["Transfer forces and 
+            torque to ballot box"]
+            
     end
 
     subgraph storage["Physical Storage"]
@@ -267,14 +285,14 @@ flowchart TB
 
 
     %% arrange groups of functions
-%%    electricalPower~~~digitalInformation~~~paperPath
+%%    electricalPower~~~digitalInteractions~~~paperPath
 %%    storage~~~electricalPower
 %%    dataStorage~~~accessControl~~~printing
 
     %% selected key information flows to/from CPU (not all of them)
-    f22.04 <-.-> f3.00
-    f5.03 <-..-> f22.04
-    f8.03 -..-> f22.04
+    f22.04 <-....-> f3.00
+    f5.03 <-...-> f22.04
+    f8.03 -...-> f22.04
     f22.04 -..-> f9.02
 %%    accessControl -.-> f22.04
 %%   printing <-.-> f22.04
@@ -287,8 +305,8 @@ flowchart TB
     classDef ioInformation font-size:10pt,stroke-width:0px,fill-opacity:0,text-align:center,color:green;    
     classDef system font-size:14pt,stroke-width:3px,text-align:center;
     classDef subsubsystem fill:lightblue,fill-opacity:0.3,stroke-width:1px;
-    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04,i8.01a,o8.04 ioMaterials;
-    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04,i8.01b,o26.02 ioEnergy;
+    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04,i8.01a,o8.04,i7.02a ioMaterials;
+    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04,i8.01b,o26.02,i7.02b ioEnergy;
     class o1.00,o2.04,o2.07,o6.01,o6.03,o9.01,o9.03,o5.01,o8.01 ioInformation;
     class s1,s2 system;
     class printing,dataStorage,accessControl subsubsystem;
