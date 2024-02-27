@@ -85,7 +85,7 @@ flowchart TB
         i22.02("power cable")
         f22.02["Accept power 
             cable plug"]
-        s2 <==> i22.02 ===> f22.02 ==> f22.01
+        s2 <==> i22.02 ==> f22.02 ==> f22.01
         f22.05["Release power 
             cable plug"]
         f22.02 ==> f22.05 ==> i22.02
@@ -133,7 +133,7 @@ flowchart TB
         f7.02 --> f7.03
         f16.07["Transfer forces and 
             torque to ballot box"]
-            
+
     end
 
     subgraph storage["Physical Storage"]
@@ -183,9 +183,9 @@ flowchart TB
         i14.01b("human forces") --> f14.01
         i14.08a("hand") <==> f14.08
         i14.08b("human forces") --> f14.08
-        f14.01 ---> f14.05
-        f14.06 --> f14.08 --> f14.01
-    
+        f14.01 ------> f14.05
+        f14.06 ---------> f14.08 --> f14.01
+        
         subgraph printing["Printing Reports"]
             %% thermal printer and reports
             i9.01("thermal paper")
@@ -196,7 +196,7 @@ flowchart TB
             f9.04["Release report printed
                 on thermal paper"]
             o9.04("printed report")
-            f9.01 -..-> o9.01("indicator of where
+            f9.01 -.-> o9.01("indicator of where
                 to insert thermal paper")
             i9.01 ==> f9.01 ==> f9.02 ==> f9.03 ==> f9.04 ==> o9.04
             i9.01a("hand") <==> f9.01
@@ -261,6 +261,26 @@ flowchart TB
         f8.04 --> f14.01
         f22.03 ----------> f8.03
 
+        %% security tie
+        subgraph securityTieAccessPanel["Security Tie Point"]
+            i24.02.1("security tie")
+            f24.02.1["Accept security tie"]
+            i24.01a.1("hand/tool") <==> f24.02.1
+            i24.01b.1("human force") --> f24.02.1 
+            f24.03.1["Hold security tie 
+                in place"]
+            f24.04.1["Release security tie"]
+            o24.04.1("security tie")
+            i24.02.1 ==> f24.02.1 ==> f24.03.1 ==> f24.04.1 ==> o24.04.1
+            i24.04a.1("hand/tool") <==> f24.04.1
+            i24.04b.1("human force") --> f24.04.1 
+            class i24.02.1,o24.04.1,i24.01a.1,i24.04a.1 ioMaterials;
+            class i24.01b.1,i24.04b.1 ioEnergy;
+        end
+
+        f14.01 --> f24.02.1
+        f24.04.1 --> f14.08
+
     end
 
 
@@ -288,6 +308,7 @@ flowchart TB
 %%    electricalPower~~~digitalInteractions~~~paperPath
 %%    storage~~~electricalPower
 %%    dataStorage~~~accessControl~~~printing
+    f14.01~~~securityTieAccessPanel~~~f14.08
 
     %% selected key information flows to/from CPU (not all of them)
     f22.04 <-....-> f3.00
@@ -305,11 +326,14 @@ flowchart TB
     classDef ioInformation font-size:10pt,stroke-width:0px,fill-opacity:0,text-align:center,color:green;    
     classDef system font-size:14pt,stroke-width:3px,text-align:center;
     classDef subsubsystem fill:lightblue,fill-opacity:0.3,stroke-width:1px;
+    classDef security fill:orange,fill-opacity:0.3;
     class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04,i8.01a,o8.04,i7.02a ioMaterials;
     class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04,i8.01b,o26.02,i7.02b ioEnergy;
     class o1.00,o2.04,o2.07,o6.01,o6.03,o9.01,o9.03,o5.01,o8.01 ioInformation;
     class s1,s2 system;
     class printing,dataStorage,accessControl subsubsystem;
+    class securityTieAccessPanel security;
+    
 
 
 ```
