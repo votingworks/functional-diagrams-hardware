@@ -88,16 +88,33 @@ flowchart LR
         i22.02b("hand") <==> f22.02
         i22.02a("human pushing 
             force") --> f22.02
-        s2 <==> i22.02 ===> f22.02 ==> f22.01
+        s2 <==> i22.02 ==> f22.02 ==> f22.01
+
         f22.05["Release power 
             cable plug"]
         f22.02 ==> f22.05 ==> i22.02
         i22.05b("hand") <==> f22.05
         i22.05a("human pulling 
             force") --> f22.05
+
         f22.03["Transmit and protect
             electrical power"]
         f22.03 --> o22.03("RF, EMI")
+        f22.01 ---> f22.03
+
+        f17.05["Relieve strain on 
+            electrical connections"]
+        f17.05 --> f22.03
+
+        f17.03["Secure wiring connections 
+            mechanically in place"]
+        f17.03 --> f22.03
+
+        f17.02["Insulate and shield internal 
+            wiring and electronics"] 
+        f17.02 --> f22.03
+        f17.02 -.-> o17.02["cable identifiers, 
+            colors, textures"]
     end
 
     subgraph digitalInteractions["Digital Interactions"]
@@ -378,7 +395,7 @@ flowchart LR
     classDef security fill:orange,fill-opacity:0.3;
     class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04,i8.01a,o8.04,i7.02a,i16.01,o16.03 ioMaterials;
     class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04,i8.01b,o26.02,i7.02b,o16.07,o16.06 ioEnergy;
-    class o1.00,o2.04,o2.07,o6.01,o6.03,o9.01,o9.03,o5.01,o8.01 ioInformation;
+    class o1.00,o2.04,o2.07,o6.01,o6.03,o9.01,o9.03,o5.01,o8.01,o17.02 ioInformation;
     class s1,s2 system;
     class printing,dataStorage,accessControl subsubsystem;
     class securityTieAccessPanel,securityTieBallotReceptacle security;
