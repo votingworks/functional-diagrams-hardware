@@ -299,23 +299,23 @@ flowchart LR
         f22.03 & f9.02 & f5.03 & f8.03-------> f26.01
     end
 
-    subgraph stability["Mechanical Stability"]
+    subgraph stability["Connection to Ballot Receptacle"]
         i16.01("interface to 
-            ballot box")
+            ballot receptacle")
         f16.01["Accept interface to 
-            ballot box"]
+            ballot receptacle"]
         f16.02["Secure interface to 
-            ballot box"]
+            ballot receptacle"]
         f16.03["Release interface to 
-            ballot box"]
+            ballot receptacle"]
         o16.03("interface to
-            ballot box")
+            ballot receptacle")
         i16.01 ==> f16.01 ==> f16.02 ==> f16.03 ==> o16.03
         f16.07["Transfer forces and 
-            torque to ballot box"]
+            torque to ballot receptacle"]
         f7.03 --> f16.07
         f16.07 --> o16.07("forces and torque 
-            to ballot box")
+            to ballot receptacle")
         f16.02 ==> f16.07
         f7.03["Resist force, torque, 
             and motion"]
@@ -323,9 +323,13 @@ flowchart LR
         f16.02 ====> f24.02.2
         f16.05["Prevent outside materials 
             from entering at interface of 
-            scanner and ballot box"]
+            scanner and ballot receptacle"]
         f16.02 ==> f16.05
         f24.04.2 ==> f16.03
+        f16.06["Conduct ESD to 
+            ballot receptacle"]
+        f16.02 --> f16.06 --> o16.06("ESD to ballot receptacle")
+        f16.02 ==> f2.02
 
         %% security tie
         subgraph securityTieBallotReceptacle["Security Tie Point"]
@@ -373,7 +377,7 @@ flowchart LR
     classDef subsubsystem fill:lightblue,fill-opacity:0.3,stroke-width:1px;
     classDef security fill:orange,fill-opacity:0.3;
     class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04,i8.01a,o8.04,i7.02a,i16.01,o16.03 ioMaterials;
-    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04,i8.01b,o26.02,i7.02b,o16.07 ioEnergy;
+    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04,i8.01b,o26.02,i7.02b,o16.07,o16.06 ioEnergy;
     class o1.00,o2.04,o2.07,o6.01,o6.03,o9.01,o9.03,o5.01,o8.01 ioInformation;
     class s1,s2 system;
     class printing,dataStorage,accessControl subsubsystem;
