@@ -169,7 +169,6 @@ flowchart LR
         f28.03["Release power cable
             from storage"]
         f28.01 ==> f28.02 ==> f28.03
-
     %%    f28.04["Expose internal storage area"]
     %%    f28.04 --> f28.01
     %%    f28.05["Hide internal storage area"]
@@ -230,10 +229,10 @@ flowchart LR
         f15.08 ==> o15.08b
 
         %% storage configuration
-        i15.09("gravity")
-        f15.09["Resist damage from 
+        i15.09("gravity, weight")
+        f14.05 --> f15.09["Resist damage from 
             storing on its side"]
-        f15.10["Resist damage from 
+        f14.05 --> f15.10["Resist damage from 
             storing upside-down"]
         i15.09 --> f15.09 & f15.10
         f14.05 --> f15.04["Stack on itself 
