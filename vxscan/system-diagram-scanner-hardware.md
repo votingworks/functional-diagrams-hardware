@@ -16,7 +16,8 @@ flowchart LR
     i1.00("ballot 
         (all types)")
     o2.02("accepted ballot")
-    i1.00 ==> paperPath ===> o2.02
+    i1.00 ==> paperPath
+    paperPath ===> o2.02
     paperPath -.-> o1.00("indicator of where
         to insert ballot")
     i1.01("gravity") --> paperPath
@@ -62,7 +63,7 @@ flowchart LR
     digitalInteractions -.-> o6.03("audio output")
     digitalInteractions -.-> o22.04b("alerts of system 
         malfunctions, tampering")
-    electricalPower -->|"electricity"| digitalInteractions
+    electricalPower --->|"electricity"| digitalInteractions
     i7.02a("hand") <==> digitalInteractions
     i7.02b("human pushing force") --> digitalInteractions
     digitalInteractions <-...->|"scanner control data"| paperPath
@@ -93,7 +94,7 @@ flowchart LR
         Subsystem"]
     electricalPower -->|"electricity"| administrativeAccess
     digitalInteractions <-..->|"election and security data"| administrativeAccess
-    i14.01a("hand") <==> administrativeAccess
+    i14.01a("hand, tool") <==> administrativeAccess
     i14.01b("human forces") --> administrativeAccess
     i9.01("thermal paper")
     o9.04("printed report")
@@ -119,8 +120,6 @@ flowchart LR
     administrativeAccess -.-> o8.01("indicator of where
         to insert smart card")
     i24.02.1("security tie")
-    i24.01a.1("hand/tool") <==> administrativeAccess
-    i24.01b.1("human force") --> administrativeAccess
     o24.04.1("security tie")
     i24.02.1 ==> administrativeAccess ==> o24.04.1
     administrativeAccess -.-> o24.04.1b("evidence of tampering
