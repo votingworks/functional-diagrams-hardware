@@ -17,8 +17,7 @@ These diagrams represent how different VotingWorks systems function.  They are m
 *Functional models of Scanner*
 * [Black box diagram (scanner hardware only): inputs and outputs](./vxscan/black-box-scanner.md)
 * [Functional model: System-level (physical hardware only, all details)](./vxscan/functional-diagram-scanner.md)
-* Functional model: System-level (physical hardware only, paper path highlighted)
-* Functional model: System-level (physical hardware only, key inputs and outputs)
+* [Functional model: System-level (physical hardware only, simplified)](./vxscan/functional-diagram-scanner-simplified.md)
 
 *Functional models of Scanner, Ballot Receptacle, and Uninterrupted Power Supply (UPS) together*
 * [Functional Diagram of Scanner and Ballot Receptacle System, Focusing on Inputs and Outputs, Functional I/O Only](./vxscan/system-diagram-hardware-io-functionalio.md)
