@@ -176,23 +176,39 @@ flowchart LR
     %%    f28.03 --> f28.05
 
         %% function tree: storage of whole system
-        f14.02["Shield from ESD 
-            in storage"]
-        f14.03["Protect from environmental 
-            heat in storage"]
-        f14.04["Protect from environmental 
-            cold in storage"]
         f14.05["Collapse and close 
             the system"]
-        f14.06["Expand and open 
-            the system"]
-        f14.05 <----> f14.06
-        f14.05 --> f14.02 & f14.03 & f14.04
-
+        f14.05 <------> f14.06
         i14.05a("hand") <==> f14.05
         i14.05b("human forces") --> f14.05
+        f14.06["Expand and open 
+            the system"]
         i14.06a("hand") <==> f14.06
         i14.06b("human forces") --> f14.06
+
+        %% carrying
+        f15.01["Accept hands 
+            for carrying"]
+        f14.05 ------> f15.01
+        f15.02["Transmit forces 
+            from carrying"]
+        f15.01 ----> f15.02
+        i15.01a("hand") <==> f15.01
+        i15.01b("human forces") --> f15.01
+
+        i15.02("gravity") --> f15.02
+        f15.12["Allow closed 
+            system to move"]
+        o15.12("kinetic energy, 
+            motion of system")
+        f15.02 --> f15.12 --> o15.12
+
+        %% packaging
+        i15.11("packaging material")
+        f15.11["Accept packaging materials 
+            around system"]
+        f14.05 --> f15.11
+        i15.11 <==> f15.11
 
         %% shock 
         i15.07("impact force, 
@@ -220,14 +236,23 @@ flowchart LR
         f15.10["Resist damage from 
             storing upside-down"]
         i15.09 --> f15.09 & f15.10
+        f14.05 --> f15.04["Stack on itself 
+            vertically"]
+        f14.05 --> f15.05["Fit in a 
+            standard vehicle"]
+        f14.05 --> f15.03["Remain stable on 
+            flat surfaces"]
+        f15.04~~~f15.05~~~f15.03
 
-        %% transport
-        i15.11("packaging material")
-        f15.11["Accept packaging materials 
-            around system"]
-        i15.11 <==> f15.11
-
-
+        %% protection in storage
+        f14.02["Shield from ESD 
+            in storage"]
+        f14.03["Protect from environmental 
+            heat in storage"]
+        f14.04["Protect from environmental 
+            cold in storage"]
+        f14.05 --> f14.02 & f14.03 & f14.04
+        f14.02~~~f14.03~~~f14.04
     end
 
     %% function tree: administrative access
@@ -237,12 +262,12 @@ flowchart LR
             features when system not in use"]
         f14.08["Expose administrative interaction 
             features when needed"]
+        f14.01 --> f14.05
         i14.01a("hand") <==> f14.01
         i14.01b("human forces") --> f14.01
         i14.08a("hand") <==> f14.08
         i14.08b("human forces") --> f14.08
-        f14.01 --> f14.05
-        f14.06 ---------> f14.08 --> f14.01
+        f14.06 --> f14.08 --> f14.01
         
         subgraph printing["Printing Reports"]
             %% thermal printer and reports
@@ -350,7 +375,7 @@ flowchart LR
     f14.06 --> f1.00
     %% flows: power cable to/from storage
     i22.02 ===> f28.01
-    f28.03 ===> i22.02
+    f28.03 =====> i22.02
 
 
     subgraph stability["Connection to Ballot Receptacle"]
@@ -492,6 +517,7 @@ flowchart LR
 %%   dataStorage <-.-> f22.04
 
 
+
     %% styling
     classDef ioMaterials font-size:10pt,stroke-width:0px,fill-opacity:0,text-align:center,color:blue;
     classDef ioEnergy font-size:10pt,stroke-width:0px,fill-opacity:0,text-align:center,color:red;
@@ -499,8 +525,8 @@ flowchart LR
     classDef system font-size:14pt,stroke-width:3px,text-align:center;
     classDef subsubsystem fill:lightblue,fill-opacity:0.3,stroke-width:1px;
     classDef security fill:orange,fill-opacity:0.3;
-    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04,i8.01a,o8.04,i7.02a,i16.01,o16.03,i24.07,o24.08,o26.05b,i26.05a,i24.08,i26.04,o15.07b,o15.08b,i15.11,i24.12,i24.13,i24.14 ioMaterials;
-    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04,i8.01b,o26.02,i7.02b,o16.07,o16.06,i17.06,i26.05b,i26.03,i15.06,o15.06,i26.03b,i15.07,o15.07a,o15.08a,i15.08,i15.09 ioEnergy;
+    class i1.00,o2.02,o2.05,o2.09,i2.08b,i2.09b,i22.02,o3.00b,i22.02a,i22.05a,i14.01a,i14.08a,i14.05a,i14.06a,i9.01a,o9.04,i9.01,i5.01a,o5.04,i8.01a,o8.04,i7.02a,i16.01,o16.03,i24.07,o24.08,o26.05b,i26.05a,i24.08,i26.04,o15.07b,o15.08b,i15.11,i24.12,i24.13,i24.14,i15.01a ioMaterials;
+    class i1.01,i2.02,i2.04,i2.07,i2.08a,i2.09a,i22.01,o3.00a,o22.03,o22.04,i22.02b,i22.05b,i14.01b,i14.08b,i14.05b,i14.06b,i9.01b,o9.02,o5.03,i5.01b,i5.04,i8.01b,o26.02,i7.02b,o16.07,o16.06,i17.06,i26.05b,i26.03,i15.06,o15.06,i26.03b,i15.07,o15.07a,o15.08a,i15.08,i15.09,i15.01b,i15.02,o15.12 ioEnergy;
     class o1.00,o2.04,o2.07,o3.00c,o6.01,o6.03,o9.01,o9.03,o5.01,o8.01,o17.02,o22.04b,o24.09 ioInformation;
     class s1,s2 system;
     class printing,dataStorage,accessControl subsubsystem;
