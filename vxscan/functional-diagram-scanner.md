@@ -18,6 +18,7 @@ Each block of nodes and connections represent roughly a functional chain for one
 title: Functional Diagram of VxScan Precinct Scanner Hardware
 ---
 
+
 flowchart LR
 
     subgraph paperPath["Paper Path"]
@@ -382,8 +383,10 @@ flowchart LR
             ballot box")
         f16.01["Accept interface to 
             ballot box"]
+        f14.05 --> f16.01
         f16.02["Secure interface to 
             ballot box"]
+        f16.02 --> f14.06
         f16.03["Release interface to 
             ballot box"]
         o16.03("interface to
@@ -523,6 +526,5 @@ flowchart LR
     class printing,dataStorage,accessControl subsubsystem;
     class securityTieAccessPanel,securityTieBallotReceptacle,securityGeneral security;
     
-
 
 ```
