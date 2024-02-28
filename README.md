@@ -14,15 +14,16 @@ These diagrams represent how different VotingWorks systems function.  They are m
 
 ### VxScan 4.0 
 
-*Functional models of Scanner*
+*Diagrams of Scanner: Functions, Inputs/Outputs, and Modules*
 * [Black box diagram (scanner hardware only): inputs and outputs](./vxscan/black-box-scanner.md)
-* [Functional model: System-level (physical hardware only, all details)](./vxscan/functional-diagram-scanner.md)
-* [Functional model: System-level (physical hardware only, simplified)](./vxscan/functional-diagram-scanner-simplified.md)
+* [Functional Diagram: System-level (physical hardware only, all details)](./vxscan/functional-diagram-scanner.md)
+* [Functional Diagram: System-level (physical hardware only, simplified)](./vxscan/functional-diagram-scanner-simplified.md)
+* [System Diagram: Scanner modules and inputs/outputs](./vxscan/system-diagram-scanner-hardware.md)
 
-*Functional models of Scanner, Ballot Receptacle, and Uninterrupted Power Supply (UPS) together*
-* [Functional Diagram of Scanner and Ballot Receptacle System, Focusing on Inputs and Outputs, Functional I/O Only](./vxscan/system-diagram-hardware-io-functionalio.md)
-* [Functional Diagram of Scanner and Ballot Receptacle System](./vxscan/system-diagram-hardware.md)
-* [Functional Diagram of Scanner and Ballot Receptacle System, Focusing on Inputs and Outputs](./vxscan/system-diagram-hardware-io.md)
+*Diagrams of Scanner, Ballot Receptacle, and Uninterrupted Power Supply (UPS) together*
+* [Diagram of Scanner and Ballot Receptacle System Flows, Focusing on Inputs and Outputs, Functional I/O Only](./vxscan/system-diagram-hardware-io-functionalio.md)
+* [Diagram of Scanner and Ballot Receptacle System Flows](./vxscan/system-diagram-hardware.md)
+* [Diagram of Scanner and Ballot Receptacle System Flows, Focusing on Inputs and Outputs](./vxscan/system-diagram-hardware-io.md)
 
 *User Actions Diagrams*
 * Assembler
