@@ -62,7 +62,7 @@ flowchart TB
         d6["Flip, shake shipment"]
     end
 
-    a & b & c -.-> d
+    a & b & c <-.-> d
 
     e["Handoff to Purchaser"]
 
