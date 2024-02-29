@@ -26,7 +26,7 @@ These diagrams represent how different VotingWorks systems function.  They are m
 * [Diagram of Scanner and Ballot Receptacle System Flows, Focusing on Inputs and Outputs](./vxscan/system-diagram-hardware-io.md)
 
 *User Actions Diagrams*
-* Assembler
+* [Assembler](./vxscan/useractions-assembler.md)
 * Transporter
 * Purchaser
 * Election Administrator
