@@ -1,6 +1,6 @@
 # Diagram of User Actions (activity diagram): Assembler
 
-This diagram models expected user actions sequences with the system.  Actions that can be done in any order are grouped together without links.
+This diagram models expected user action sequences with the system.  Actions that can be done in any order are grouped together without links.
 
 This user is:
 *Assembler*
@@ -98,7 +98,7 @@ flowchart TB
 
     h --> i
 
-    j["Handoff to transporter"]
+    j["Handoff to Transporter"]
 
     i --> j
 

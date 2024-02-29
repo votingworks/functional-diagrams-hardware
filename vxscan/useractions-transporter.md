@@ -1,6 +1,6 @@
 # Diagram of User Actions (activity diagram): Transporter
 
-This diagram models expected user actions sequences with the system.  Actions that can be done in any order are grouped together without links.
+This diagram models expected user action sequences with the system.  Actions that can be done in any order are grouped together without links.
 
 This user is:
 *Transporter*
@@ -64,7 +64,7 @@ flowchart TB
 
     a & b & c -.-> d
 
-    e["Handoff to purchaser"]
+    e["Handoff to Purchaser"]
 
     d -.-> e
     c --> e
