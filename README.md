@@ -27,7 +27,7 @@ These diagrams represent how different VotingWorks systems function.  They are m
 
 *User Actions Diagrams*
 * [Assembler](./vxscan/useractions-assembler.md)
-* Transporter
+* [Transporter](./vxscan/useractions-transporter.md)
 * Purchaser
 * Election Administrator
 * Poll Worker
