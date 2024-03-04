@@ -17,7 +17,7 @@ For each user action, ask:
 ```mermaid
 
 ---
-title: VxScan User Actions Diagram - Assemblers
+title: VxScan User Actions Diagram - Purchaser
 ---
 
 flowchart TB

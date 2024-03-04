@@ -17,7 +17,7 @@ For each user action, ask:
 ```mermaid
 
 ---
-title: VxScan User Actions Diagram - Transporters
+title: VxScan User Actions Diagram - Transporter
 ---
 
 flowchart TB
