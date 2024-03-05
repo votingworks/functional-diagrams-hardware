@@ -30,7 +30,7 @@ flowchart TD
             a3["Receive UPS"]
             a4["Receive VxAdmin"]
             a5["Get smartcards"]
-            a6["Get peripherals"]
+            a6["Get peripherals, cords, etc."]
             a7["Get USBs"]
         end
 
