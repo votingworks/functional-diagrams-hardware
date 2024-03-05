@@ -44,7 +44,8 @@ flowchart LR
             g["Recognize ballot rejection"]
             h["Recognize ballot jam"]
             e --> f & g & h
-
+            j --> n
+            
             i["Go away from scanner"]
             f --> i
 
