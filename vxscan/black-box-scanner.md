@@ -21,8 +21,7 @@ flowchart LR
             thermal paper
             USBs
             smart cards
-            security seals 
-            (ties & labels)
+            security seals (ties & labels)
             human hands, 
             fingers, clothes
             cleaning materials
