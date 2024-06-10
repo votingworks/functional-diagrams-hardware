@@ -1,0 +1,31 @@
+
+
+flowchart TD
+
+  
+    subgraph Settings
+        SC{Color} 
+        ST{Text Size}
+        SA{Audio}
+        SA --> AOM
+    end
+
+    subgraph Voting
+        s1[Start] -->|Poll Worker Adds Card| s2(Poll Worker Starts a new Voting Session)
+        s2 --> |Poll worker Adds Blank Paper| s3[Voting Session Active]
+        s3 --> |Poll Worker Removes card| s4[General Election Start Voting Screen]
+        s4 --> s5(Start Voting)
+        s5 --> s6{Shows Contest}
+        s6 --> s7[Prints Ballot]
+        s7 --> s8[User Checks Ballot]
+        s8 --> s9[Press Done]
+    end
+
+    subgraph Languages
+        L{Language Options}
+    end
+
+    
+
+
+    
