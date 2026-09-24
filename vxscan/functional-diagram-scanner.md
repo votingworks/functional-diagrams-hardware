@@ -13,7 +13,6 @@ Each block of nodes and connections represent roughly a functional chain for one
 -->
 
 ```mermaid
-
 ---
 title: Functional Diagram of VxScan Precinct Scanner Hardware
 ---
@@ -78,7 +77,7 @@ flowchart LR
     subgraph electricalPower["Electrical Power"]
         s2{{"Transmit stable
             electrical power from
-            Universal Power Supply 
+            Uniterruptible Power Supply 
             (UPS)"}}
         i22.01("electrical power")
         f22.01["Accept electrical 

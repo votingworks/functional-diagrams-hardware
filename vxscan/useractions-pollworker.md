@@ -15,12 +15,11 @@ For each user action, ask:
 
 
 ```mermaid
-
 ---
 title: VxScan User Actions Diagram - Poll Worker
 ---
 
-flowchart TD
+flowchart LR
 
     subgraph test[" "]
 

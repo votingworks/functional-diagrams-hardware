@@ -1,7 +1,6 @@
 # VxScan 4.0 Functional Diagram of Scanner and Ballot Receptacle System, Focusing on Inputs and Outputs, Functional I/O Only
 
 ```mermaid
-
 ---
 title: VxScan Functional Diagram of Scanner and Ballot Receptacle System
 ---
