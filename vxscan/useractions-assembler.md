@@ -15,12 +15,11 @@ For each user action, ask:
 
 
 ```mermaid
-
 ---
 title: VxScan User Actions Diagram - Assembler
 ---
 
-flowchart TB
+flowchart TD
 
     subgraph a[" "]
         a1["Read assembly instructions"]

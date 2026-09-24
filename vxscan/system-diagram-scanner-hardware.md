@@ -3,7 +3,6 @@
 This diagram represents key subsystems or modules inside the VxScan.  Each subsystem is treated like a black box, and the flows of inputs and outputs are shown.
 
 ```mermaid
-
 ---
 title: VxScan System Diagram of Main Subsystems
 ---
@@ -40,7 +39,7 @@ flowchart LR
     %% electrical power
     electricalPower["Electrical Power 
         Subsystem"]
-    s2{{"Universal Power Supply 
+    s2{{"Uninterruptible Power Supply 
         (UPS)"}}
     i22.01("electrical power")
     s2 --> i22.01 ---> electricalPower

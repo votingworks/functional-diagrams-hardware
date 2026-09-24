@@ -15,12 +15,11 @@ For each user action, ask:
 
 
 ```mermaid
-
 ---
 title: VxScan User Actions Diagram - Election Administrator
 ---
 
-flowchart TD
+flowchart LR
 
     subgraph test[" "]
 
@@ -55,18 +54,19 @@ flowchart TD
             c8["Learn how to use system"]
             c9["Test system"]
             c10["Demo system"]
-            c10["Clean system"]
-            c11["Train on system with one"]
+            c11["Clean system"]
+            c12["Train on system with one"]
         end
 
         subgraph e[" "]
+            direction LR
             e1["Learn about system"]
             e2["Communicate with seller"]
             e3["Organize space for systems"]
             e4["Train on system without one"]
             e5["Communicate to community"]
             e6["Plan for end-of-life"]
-            e1~~~e2~~~e3~~~e4~~~e5~~~e6
+
         end
 
         b --> c
@@ -75,7 +75,7 @@ flowchart TD
         a & b & c & d <--> e
         d ---------> f["Take system from other election workers"]
         f --> g["Dispose of system"]
-        e6 --> g
+        e --> g
 
     end
 
