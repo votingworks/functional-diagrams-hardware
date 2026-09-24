@@ -8,56 +8,42 @@ title: VxScan Functional Diagram of Scanner and Ballot Receptacle System
 flowchart LR
 
     scanner["VxScan: 
-        Ballot Scanner"]
+Ballot Scanner"]
     ballotReceptacle["Ballot 
-        receptacle"]
+receptacle"]
     ups["UPS"]
 
-    inputsMaterialsCommon("human hands and clothes, 
-        cleaning materials, atmosphere,
-        transport materials, dirt, dust")
+    inputsMaterialsCommon("human hands and clothes, cleaning materials, atmosphere, transport materials, dirt, dust")
     inputsMaterialsCommon ==> scanner & ballotReceptacle & ups
 
-    outputsEnergyCommon("vibrations, RF, EM fields, 
-        physical reaction forces, 
-        noise, heat, light")
+    outputsEnergyCommon("vibrations, RF, EM fields, physical reaction forces, noise, heat, light")
     scanner & ballotReceptacle & ups --> outputsEnergyCommon
 
-    outputsMaterialsCommon("human hands and clothes, 
-        cleaning materials, atmosphere,
-        transport materials, dirt, dust")
+    outputsMaterialsCommon("human hands and clothes, cleaning materials, atmosphere, transport materials, dirt, dust")
     scanner & ballotReceptacle & ups ==> outputsMaterialsCommon
 
-    inputsMaterialScanner("ballots, thermal paper, USBs, smart cards, 
-        security seals, power plug, power cable, tools")
+    inputsMaterialScanner("ballots, thermal paper, USBs, smart cards, security seals, power plug, power cable, tools")
     inputsMaterialScanner ===> scanner
 
-    inputsEnergyCommon("gravity, human forces, impact forces,
-        heat, light, vibrations, RF, EM fields, ESD")
+    inputsEnergyCommon("gravity, human forces, impact forces, heat, light, vibrations, RF, EM fields, ESD")
     inputsEnergyCommon --> scanner & ballotReceptacle & ups
 
-    outputsMaterialScanner("invalid ballots, thermal paper, 
-        USBs, smart cards, security seals, 
-        power cable")
+    outputsMaterialScanner("invalid ballots, thermal paper, USBs, smart cards, security seals, power cable")
     scanner ==> outputsMaterialScanner
 
-    outputsInformationScanner("digital visual feedback,
-        digital audio feedback,
-        security statuses, machine IDs")
+    outputsInformationScanner("digital visual feedback, digital audio feedback, security statuses, machine IDs")
     scanner -.-> outputsInformationScanner
 
     scanner ===> |"valid scanned ballots"|ballotReceptacle
     scanner <--> |"reaction forces, ESD"|ballotReceptacle
 
-    inputsMaterialsBallotReceptacle("security seals, keys")
+    inputsMaterialsBallotReceptacle("security seals, locks/keys, emergency ballots")
     inputsMaterialsBallotReceptacle ==> ballotReceptacle
 
-    outputsMaterialsBallotReceptacle("scanned ballots, 
-        security seals, keys")
+    outputsMaterialsBallotReceptacle("scanned ballots, security seals, locks/keys", emergency ballots)
     ballotReceptacle ==> outputsMaterialsBallotReceptacle
 
-    outputsInformationBallotReceptacle("system information, 
-        security statuses")
+    outputsInformationBallotReceptacle("system information, security statuses")
     ballotReceptacle -.-> outputsInformationBallotReceptacle
 
     ups <===> |"plug"|scanner

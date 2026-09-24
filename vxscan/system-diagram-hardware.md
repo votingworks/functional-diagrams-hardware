@@ -51,11 +51,10 @@ flowchart LR
     scanner <--> |"reaction forces, 
         ESD"|ballotReceptacle
 
-    inputsMaterialsBallotReceptacle["security seals, keys"]
+    inputsMaterialsBallotReceptacle["security seals, locks/keys, emergency ballots"]
     inputsMaterialsBallotReceptacle ==> ballotReceptacle
 
-    outputsMaterialsBallotReceptacle["scanned ballots, 
-        security seals, keys"]
+    outputsMaterialsBallotReceptacle["scanned ballots, security seals, locks/keys, emergency ballots"]
     ballotReceptacle ==> outputsMaterialsBallotReceptacle
 
     outputsInformationBallotReceptacle["system information, 
